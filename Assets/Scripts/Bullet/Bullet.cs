@@ -10,8 +10,7 @@ public class Bullet : MonoBehaviour
     private PooledObjectManager pool;
 
 
-    [SerializeField]
-    private float bulletMaxSpeed;
+    public float bulletMaxSpeed;
 
 
 

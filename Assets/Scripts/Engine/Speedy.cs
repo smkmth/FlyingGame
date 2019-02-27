@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(InputComponent))]
+
 public class Speedy : Engine {
 
 
@@ -31,8 +30,8 @@ public class Speedy : Engine {
     // Use this for initialization
     void Start () {
 
-        rb = gameObject.GetComponent<Rigidbody>();
-        input = gameObject.GetComponent<InputComponent>();
+        rb = gameObject.GetComponentInParent<Rigidbody>();
+        input = gameObject.GetComponentInParent<InputComponent>();
 
         MaxSpeed = maxSpeed;
         Acceleration = acceleration;

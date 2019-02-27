@@ -24,6 +24,8 @@ public abstract class Gun  : MonoBehaviour
 
     public abstract float ReloadTime { get; set; }
 
+    public abstract float BulletSpeed { get; set; }
+
 
 
 

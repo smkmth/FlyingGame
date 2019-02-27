@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(InputComponent))]
 public class MachineGun : Gun {
 
     //pool manager  - found with the gameobject called 'ObjectPooler'
@@ -41,6 +40,12 @@ public class MachineGun : Gun {
     private float reloadTime;
     public override float ReloadTime { get ; set; }
 
+    //how long it takes to reload
+    [SerializeField]
+    private float bulletSpeed;
+    public override float BulletSpeed { get; set; }
+
+
     //the timer we check reload and firerate with
     private float timer;
 
@@ -52,12 +57,13 @@ public class MachineGun : Gun {
     {
         //get components 
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
-        input = gameObject.GetComponent<InputComponent>();
+        input = gameObject.GetComponentInParent<InputComponent>();
         //set editor settings
         FireRate = fireRate;
         Ammo = fullAmmo;
         ClipSize = fullClip;
         ReloadTime = reloadTime;
+        BulletSpeed = bulletSpeed;
         //initilaze values
         timer = 0.0f;
         CurrentGunState = GunState.Idle;
@@ -106,6 +112,7 @@ public class MachineGun : Gun {
                         timer = 0;
                         currentClip -= 1;
                         GameObject bullet = pool.SpawnObject("Bullet", gunPos.position);
+                        bullet.GetComponent<Bullet>().bulletMaxSpeed = BulletSpeed;
 
                     }
                     break;
