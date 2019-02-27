@@ -158,6 +158,12 @@ MonoBehaviour:
   pool: {fileID: 0}
   input: {fileID: 0}
   gunPos: {fileID: 4065138383780566}
+  fullAmmo: 10
+  currentAmmo: 10
+  fullClip: 30
+  currentClip: 30
+  fireRate: 0.1
+  reloadTime: 0.5
 --- !u!114 &114260126067705024
 MonoBehaviour:
   m_ObjectHideFlags: 1

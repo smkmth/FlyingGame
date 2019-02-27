@@ -99,8 +99,6 @@ public class PooledObjectManager : MonoBehaviour {
                 //check if the object has any deactivated versions
                 if (!anobject.activeSelf)
                 {
-                    Debug.Log("activating");
-
                     anobject.SetActive(true);
                     anobject.transform.SetPositionAndRotation(transformPos,Quaternion.identity);
                     return anobject;
@@ -117,18 +115,14 @@ public class PooledObjectManager : MonoBehaviour {
 
     public void DespwanObject(GameObject objectToDespawn)
     {
-        Debug.Log("despawn");
         foreach (GameObject anobject in ObjectPool)
         {
             //check if two game objects are the same
             if (anobject.GetInstanceID() == objectToDespawn.GetInstanceID())
             {
-                Debug.Log("foundit");
                 //check if the object has any deactivated versions
                 if (anobject.activeSelf)
                 {
-                    Debug.Log("deactivating");
-
                     anobject.SetActive(false);
                     anobject.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
                  
