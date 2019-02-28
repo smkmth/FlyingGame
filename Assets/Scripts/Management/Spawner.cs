@@ -10,14 +10,16 @@ public class Spawner : MonoBehaviour {
     public Vector3 EnemyStartPos;
 
     private GameObject player;
-
+    private GamestateManager gamestate;
 
 
     private void Start()
     {
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
+        gamestate = GetComponent<GamestateManager>();
 
         player = pool.SpawnObject("Player", PlayerStartPos, true);
+        gamestate.Player = player;
         pool.SpawnObject("Enemy", EnemyStartPos, false);
         
     }

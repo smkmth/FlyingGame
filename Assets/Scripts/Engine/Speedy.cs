@@ -2,8 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Speedy : Engine {
+public enum PlayerPos
+{
+    TooRight,
+    TooLeft,
+    TooHigh,
+    TooLow,
+    Fine
+}
+public class Speedy : Engine
+{
 
 
     [SerializeField]
@@ -18,52 +26,99 @@ public class Speedy : Engine {
     [SerializeField]
     private InputComponent input;
 
+    public PlayerPos playerPos;
+
     public override float MaxSpeed { get; set; }
-   
-    public override float Acceleration { get ; set ; }
+
+    public override float Acceleration { get; set; }
 
     private Vector3 moveForward;
     private Vector3 moveLeft;
-
+    private ScreenManager screen;
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
         rb = gameObject.GetComponentInParent<Rigidbody>();
         input = gameObject.GetComponentInParent<InputComponent>();
 
+        screen = GameObject.Find("ScreenManager").GetComponent<ScreenManager>();
+
         MaxSpeed = maxSpeed;
         Acceleration = acceleration;
-		
+
         Vector3 moveLeft = new Vector3(0, 0, 0);
         Vector3 moveForward = new Vector3(0, 0, 0);
-	}
-	
+    }
+
     public override void MoveForward(float input)
-    {
+    { 
+        if (playerPos == PlayerPos.TooHigh)
+        {
+            input = -1;
+        } 
+        if (playerPos == PlayerPos.TooLow)
+        {
+            input = 1;
+        }
         moveForward.y = input;
         rb.AddForce(moveForward * Acceleration);
-
     }
 
     public override void MoveLeft(float input)
     {
+        if (playerPos == PlayerPos.TooRight)
+        {
+            input = -1;
+        }
+        if (playerPos == PlayerPos.TooLeft)
+        {
+            input = 1;
+        }
         moveForward.x = input;
         rb.AddForce(moveLeft * Acceleration);
 
     }
 
     // Update is called once per frame
-    void LateUpdate () {
+    void LateUpdate()
+    {
 
         if (rb.velocity.magnitude < MaxSpeed)
         {
-            MoveForward(input.GetForward);
             MoveLeft(input.GetLeft);
+            MoveForward(input.GetForward);
+
         }
 
+        Debug.Log(playerPos +" " + (screen.leftExtend.y - transform.position.x));
 
+        if ((screen.upExtend.y - transform.position.y) < 0)
+        {
+            playerPos = PlayerPos.TooHigh;
+
+        }
+        else if ((screen.downExtend.y - transform.position.y) > 0)
+        {
+            playerPos = playerPos = PlayerPos.TooLow;
+        }
+        else if ((transform.position.x - screen.rightExtend.x) > 0)
+        {
+            playerPos = PlayerPos.TooRight;
+        }
+        else if((screen.leftExtend.x - transform.position.x ) > 0)
+        {
+            playerPos = PlayerPos.TooLeft;
+        }
+        else
+        {
+            playerPos = PlayerPos.Fine;
+
+        }
 
     }
 }
+
+

@@ -13,6 +13,8 @@ public class ScreenManager : MonoBehaviour {
     //the top most point
     public Vector3 upExtend;
 
+    public Vector3 screenMiddle;
+
     /*
     private void OnDrawGizmos()
     {

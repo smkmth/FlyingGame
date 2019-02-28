@@ -2,15 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameState
+{
+    Playing,
+    GameOver
+}
+
 public class GamestateManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    public GameObject Player { get; set; }
+
+    public GameState CurrentGameState { get; set; }
+
+    private void Start()
+    {
+        CurrentGameState = GameState.Playing;   
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        if (Player) { 
+            if(Player.activeSelf != true)
+            {
+                CurrentGameState = GameState.GameOver;
+            }
+            else
+            {
+                CurrentGameState = GameState.Playing;
+            }
+        }
 		
 	}
 }
