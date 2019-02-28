@@ -33,26 +33,24 @@ public class PooledObjectManager : MonoBehaviour {
 
     [SerializeField]
     private string PlayerName;
-        [SerializeField]
+
+    [SerializeField]
     private string EnemyName;
 
     [SerializeField]
     private string BulletName;
 
-    public Vector3 PlayerStartPos;
-    public Vector3 EnemyStartPos;
+
 
     // Use this for initialization
     void Awake () {
 
         ObjectPool = new List<GameObject>();
-
         currentpoolcount = 0;
         Init(Bullet, BulletsToPool, ObjectPool, BulletName);
         Init(Player, PlayersToPool, ObjectPool, PlayerName);
         Init(Enemy, EnemiesToPool, ObjectPool, EnemyName);
-        SpawnObject("Player", PlayerStartPos, true);
-        SpawnObject("Enemy", EnemyStartPos, false);
+
 
 	}
 
@@ -63,8 +61,6 @@ public class PooledObjectManager : MonoBehaviour {
         if (numToInit > (currentpoolcount - ObjectCap))
         {
             Assert.IsTrue(true, "Need more allocation");
-            
-
         }
         
         for (int i = 0; i < numToInit; i++)
@@ -79,7 +75,6 @@ public class PooledObjectManager : MonoBehaviour {
                 if (i == 0)
                 {
                     thing.layer = 10;
-
                 }
                 else
                 {
@@ -88,12 +83,9 @@ public class PooledObjectManager : MonoBehaviour {
             }
             else
             {
-
                 Debug.Log("Overflow at " + currentpoolcount);
                 return;
-                
             }
-
         }
     }
 
@@ -119,15 +111,10 @@ public class PooledObjectManager : MonoBehaviour {
 
                     }
                     return anobject;
-
                 }
-  
             }
         }
-
         return null;
-
-
     }
 
     public void DespwanObject(GameObject objectToDespawn)
@@ -142,14 +129,8 @@ public class PooledObjectManager : MonoBehaviour {
                 {
                     anobject.SetActive(false);
                     anobject.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
-                 
-
                 }
-
             }
         }
-
     }
-
-
 }

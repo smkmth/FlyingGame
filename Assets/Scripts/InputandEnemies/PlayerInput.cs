@@ -3,11 +3,15 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-public class InputComponent : MonoBehaviour {
+public class PlayerInput : InputComponent {
 
-    public float GetForward;
-    public float GetLeft;
-    public bool GetFire;
+
+
+    public override float GetForward { get; set; }
+
+    public override float GetLeft { get; set; }
+
+    public override bool GetFire { get; set; }
 
     private void Start()
     {
@@ -34,8 +38,5 @@ public class InputComponent : MonoBehaviour {
             GetFire = false;
         }
             
-      
-
-		
 	}
 }

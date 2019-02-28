@@ -19,7 +19,6 @@ public abstract class Hull : MonoBehaviour {
     public void TakeDamage(int damageToTake)
     {
         Health -= damageToTake;
-        Debug.Log(Health);
         if (Health <= 0)
         {
             BlowUp();
@@ -28,7 +27,7 @@ public abstract class Hull : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("hit");
+        //Debug.Log( other.name + " hit " + name);
 
         if (other.tag == "bullet")
         {

@@ -8,11 +8,16 @@ public class Bullet : MonoBehaviour
 
     private Rigidbody rb;
     private PooledObjectManager pool;
+    private ScreenManager screen;
 
 
     public float bulletMaxSpeed;
     public int bulletDamage;
     public bool facingForward;
+
+    private float topScreenPos;
+    private float bottomScreenPos;
+    public string whoShotMe;
 
 
     // Use this for initialization
@@ -23,6 +28,14 @@ public class Bullet : MonoBehaviour
 
         rb = gameObject.GetComponent<Rigidbody>();
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
+        screen = GameObject.Find("ScreenManager").GetComponent<ScreenManager>();
+
+      //  topScreenPos = screen.upExtend.y;
+      // bottomScreenPos = screen.downExtend.y;
+
+
+        topScreenPos = 100f;
+        bottomScreenPos = -100f;
 
 
     }
@@ -44,7 +57,7 @@ public class Bullet : MonoBehaviour
 
 
 
-        if (transform.position.y > 100 || transform.position.y < -100)
+        if (transform.position.y > topScreenPos || transform.position.y < bottomScreenPos)
         {
             pool.DespwanObject(this.gameObject);
 
@@ -55,6 +68,7 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(whoShotMe + "shot the "+ other.name + " of "+ other.transform.parent.name);
         pool.DespwanObject(this.gameObject);
 
     }

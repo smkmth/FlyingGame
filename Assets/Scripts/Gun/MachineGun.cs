@@ -131,6 +131,7 @@ public class MachineGun : Gun {
                         bullet.bulletMaxSpeed = BulletSpeed;
                         bullet.bulletDamage = BulletDamage;
                         bullet.facingForward = facingForward;
+                        bullet.whoShotMe = transform.parent.name;
 
                     }
                     break;
