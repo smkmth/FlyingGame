@@ -37,7 +37,6 @@ public class LeftToRightAi : InputComponent {
         }
         else if (transform.position.x < (screen.leftExtend.x * HowFar))
         {
-            Debug.Log(screen.leftExtend.x * 0.5);
             goingRight = true;
   
 

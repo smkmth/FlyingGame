@@ -754,8 +754,8 @@ MonoBehaviour:
   fullClip: 30
   currentClip: 30
   fireRate: 0.1
-  reloadTime: 0.5
-  bulletSpeed: 60
+  reloadTime: 2
+  bulletSpeed: 30
   bulletDamage: 10
   facingForward: 0
 --- !u!114 &114598028285872798
@@ -791,8 +791,8 @@ MonoBehaviour:
   fullClip: 30
   currentClip: 30
   fireRate: 0.1
-  reloadTime: 0.5
-  bulletSpeed: 60
+  reloadTime: 2
+  bulletSpeed: 30
   bulletDamage: 10
   facingForward: 0
 --- !u!114 &114834923910942980

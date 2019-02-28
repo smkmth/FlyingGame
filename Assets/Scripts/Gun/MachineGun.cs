@@ -127,11 +127,14 @@ public class MachineGun : Gun {
                         timer = 0;
                         currentClip -= 1;
                         GameObject bulletObj = pool.SpawnObject("Bullet", gunPos.position, facingForward);
-                        Bullet bullet = bulletObj.GetComponent<Bullet>();
-                        bullet.bulletMaxSpeed = BulletSpeed;
-                        bullet.bulletDamage = BulletDamage;
-                        bullet.facingForward = facingForward;
-                        bullet.whoShotMe = transform.parent.name;
+                        if (bulletObj)
+                        {
+                            Bullet bullet = bulletObj.GetComponent<Bullet>();
+                            bullet.bulletMaxSpeed = BulletSpeed;
+                            bullet.bulletDamage = BulletDamage;
+                            bullet.facingForward = facingForward;
+                            // bullet.whoShotMe = transform.parent.name;
+                        }
 
                     }
                     break;

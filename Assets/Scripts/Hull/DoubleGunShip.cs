@@ -40,7 +40,7 @@ public class DoubleGunShip : Hull
 
     public override void BlowUp()
     {
-        Debug.Log("BlewUp");
+
         pool.DespwanObject(gameObject);
     }
 }

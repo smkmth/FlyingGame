@@ -47,9 +47,11 @@ public class PooledObjectManager : MonoBehaviour {
 
         ObjectPool = new List<GameObject>();
         currentpoolcount = 0;
-        Init(Bullet, BulletsToPool, ObjectPool, BulletName);
+
+        //always init player first, enemies next then bullets last 
         Init(Player, PlayersToPool, ObjectPool, PlayerName);
         Init(Enemy, EnemiesToPool, ObjectPool, EnemyName);
+        Init(Bullet, BulletsToPool, ObjectPool, BulletName);
 
 
 	}
@@ -58,10 +60,7 @@ public class PooledObjectManager : MonoBehaviour {
 
     private void Init(GameObject objectToInit, int numToInit, List<GameObject> listToInitTo, string nameToSave)
     {
-        if (numToInit > (currentpoolcount - ObjectCap))
-        {
-            Assert.IsTrue(true, "Need more allocation");
-        }
+       
         
         for (int i = 0; i < numToInit; i++)
         {
@@ -83,7 +82,7 @@ public class PooledObjectManager : MonoBehaviour {
             }
             else
             {
-                Debug.Log("Overflow at " + currentpoolcount);
+                Assert.IsTrue(false, "Overflow at " + currentpoolcount + " " + nameToSave + "s");
                 return;
             }
         }

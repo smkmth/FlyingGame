@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
 
     private float topScreenPos;
     private float bottomScreenPos;
-    public string whoShotMe;
+   // public string whoShotMe;
 
 
     // Use this for initialization
@@ -68,7 +68,7 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(whoShotMe + "shot the "+ other.name + " of "+ other.transform.parent.name);
+
         pool.DespwanObject(this.gameObject);
 
     }
