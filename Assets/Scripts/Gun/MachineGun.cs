@@ -43,7 +43,14 @@ public class MachineGun : Gun {
     //how long it takes to reload
     [SerializeField]
     private float bulletSpeed;
-    public override float BulletSpeed { get; set; }
+    public override float BulletSpeed { get; set; }    
+    
+    //how long it takes to reload
+    [SerializeField]
+    private int bulletDamage;
+    public override int BulletDamage { get; set; }
+
+    public bool facingForward;
 
 
     //the timer we check reload and firerate with
@@ -64,10 +71,18 @@ public class MachineGun : Gun {
         ClipSize = fullClip;
         ReloadTime = reloadTime;
         BulletSpeed = bulletSpeed;
+        BulletDamage = bulletDamage;
         //initilaze values
         timer = 0.0f;
         CurrentGunState = GunState.Idle;
-        //check values make sense 
+        //check facing direction
+        if (transform.parent.name != "Player")
+        {
+            facingForward = false;
+        }else
+        {
+            facingForward = true;
+        }
         
 
     }
@@ -111,8 +126,11 @@ public class MachineGun : Gun {
                     {
                         timer = 0;
                         currentClip -= 1;
-                        GameObject bullet = pool.SpawnObject("Bullet", gunPos.position);
-                        bullet.GetComponent<Bullet>().bulletMaxSpeed = BulletSpeed;
+                        GameObject bulletObj = pool.SpawnObject("Bullet", gunPos.position, facingForward);
+                        Bullet bullet = bulletObj.GetComponent<Bullet>();
+                        bullet.bulletMaxSpeed = BulletSpeed;
+                        bullet.bulletDamage = BulletDamage;
+                        bullet.facingForward = facingForward;
 
                     }
                     break;

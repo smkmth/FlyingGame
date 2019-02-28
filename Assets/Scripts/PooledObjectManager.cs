@@ -6,7 +6,8 @@ using UnityEngine.Assertions;
 public class PooledObjectManager : MonoBehaviour {
 
 
-    public GameObject Guy;
+    public GameObject Player;
+    public GameObject Enemy;
     public GameObject Bullet;
 
     private List<GameObject> ObjectPool;
@@ -20,7 +21,10 @@ public class PooledObjectManager : MonoBehaviour {
     private int BulletsToPool;
 
     [SerializeField]
-    private int GuysToPool;
+    private int EnemiesToPool;
+
+    [SerializeField]
+    private int PlayersToPool;
 
     [SerializeField]
     private bool PermissivePool;
@@ -28,12 +32,15 @@ public class PooledObjectManager : MonoBehaviour {
     private int currentpoolcount;
 
     [SerializeField]
-    private string GuyName;
+    private string PlayerName;
+        [SerializeField]
+    private string EnemyName;
 
     [SerializeField]
     private string BulletName;
 
-    public Vector3 testpos;
+    public Vector3 PlayerStartPos;
+    public Vector3 EnemyStartPos;
 
     // Use this for initialization
     void Awake () {
@@ -42,8 +49,10 @@ public class PooledObjectManager : MonoBehaviour {
 
         currentpoolcount = 0;
         Init(Bullet, BulletsToPool, ObjectPool, BulletName);
-        Init(Guy, GuysToPool, ObjectPool, GuyName);
-        SpawnObject("Guy", testpos);
+        Init(Player, PlayersToPool, ObjectPool, PlayerName);
+        Init(Enemy, EnemiesToPool, ObjectPool, EnemyName);
+        SpawnObject("Player", PlayerStartPos, true);
+        SpawnObject("Enemy", EnemyStartPos, false);
 
 	}
 
@@ -88,7 +97,7 @@ public class PooledObjectManager : MonoBehaviour {
         }
     }
 
-    public GameObject SpawnObject(string nameToLookFor, Vector3 transformPos)
+    public GameObject SpawnObject(string nameToLookFor, Vector3 transformPos, bool facingForward)
     {
         //iterate over array
         foreach (GameObject anobject in ObjectPool)
@@ -100,7 +109,15 @@ public class PooledObjectManager : MonoBehaviour {
                 if (!anobject.activeSelf)
                 {
                     anobject.SetActive(true);
-                    anobject.transform.SetPositionAndRotation(transformPos,Quaternion.identity);
+                    if (facingForward)
+                    {
+                        anobject.transform.SetPositionAndRotation(transformPos, Quaternion.identity);
+                    }
+                    else
+                    {
+                        anobject.transform.SetPositionAndRotation(transformPos, Quaternion.AngleAxis(180, Vector3.forward));
+
+                    }
                     return anobject;
 
                 }

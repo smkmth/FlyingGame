@@ -9,4 +9,34 @@ public abstract class Hull : MonoBehaviour {
     public abstract Engine MainEngine { get; set; }
     public abstract List<Gun> GunList { get; set; }
 
+    public abstract int Health { get; set; }
+
+    public abstract int MaxHealth { get; set; }
+
+    public abstract void BlowUp();
+
+
+    public void TakeDamage(int damageToTake)
+    {
+        Health -= damageToTake;
+        Debug.Log(Health);
+        if (Health <= 0)
+        {
+            BlowUp();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("hit");
+
+        if (other.tag == "bullet")
+        {
+            Bullet bullet = other.gameObject.GetComponent<Bullet>();
+
+            TakeDamage(bullet.bulletDamage);
+        }
+    }
+
+
 }
