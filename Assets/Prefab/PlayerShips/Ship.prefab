@@ -758,7 +758,7 @@ MonoBehaviour:
   gunArray:
   - {fileID: 114167876067174094}
   - {fileID: 114581210338651160}
-  maxHealth: 50
+  maxHealth: 100
 --- !u!114 &114443784396160466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -808,3 +808,4 @@ MonoBehaviour:
   acceleration: 1000
   rb: {fileID: 0}
   input: {fileID: 0}
+  playerPos: 0

@@ -10,18 +10,39 @@ public class Spawner : MonoBehaviour {
     public Vector3 EnemyStartPos;
 
     private GameObject player;
+    private GameObject enemy;
+
+    public List<GameObject> enemyList;
     private GamestateManager gamestate;
 
-
-    private void Start()
+    public void InitialSpawn()
     {
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
-        gamestate = GetComponent<GamestateManager>();
+
+        pool.SetUpScene();
 
         player = pool.SpawnObject("Player", PlayerStartPos, true);
-        gamestate.Player = player;
-        pool.SpawnObject("Enemy", EnemyStartPos, false);
-        
+
+        enemy = pool.SpawnObject("Enemy", EnemyStartPos, false);
+
+        player.GetComponent<Hull>().SetUp();
+    }
+
+    public GameObject GetPlayer()
+    {
+        return player;
+    }
+
+    public void TeardownSpawn()
+    {
+        pool.TearDownObjects();
+
+    }
+
+    public void ResetObjects()
+    {
+        pool.DespawnAllObjects();
+        InitialSpawn();
     }
 
 

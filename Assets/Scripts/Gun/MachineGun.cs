@@ -79,26 +79,23 @@ public class MachineGun : Gun {
         if (transform.parent.name != "Player")
         {
             facingForward = false;
-        }else
+        }
+        else
         {
             facingForward = true;
         }
-        
-
     }
 
     public override void FireGun(bool firing)
     {
- 
-        if (firing == true )
-        {
+         if (firing == true )
+         {
             if (currentClip >= 0)
             {
                 CurrentGunState = GunState.Firing;
             }
             else if (currentClip <= 0)
             {
-
                 CurrentGunState = GunState.Reloading;
             }
         }
@@ -106,7 +103,26 @@ public class MachineGun : Gun {
         {
             CurrentGunState = GunState.Idle;
         }
-        
+    }
+
+    void FireShot()
+    {
+        currentClip -= 1;
+        GameObject bulletObj = pool.SpawnObject("Bullet", gunPos.position, facingForward);
+        if (bulletObj)
+        {
+            Bullet bullet = bulletObj.GetComponent<Bullet>();
+            bullet.bulletMaxSpeed = BulletSpeed;
+            bullet.bulletDamage = BulletDamage;
+            bullet.facingForward = facingForward;
+            // bullet.whoShotMe = transform.parent.name;
+        }
+    }
+
+    void Reload()
+    {
+        CurrentGunState = GunState.Idle;
+        currentClip = ClipSize;
     }
 
 
@@ -114,28 +130,16 @@ public class MachineGun : Gun {
 	// Update is called once per frame
 	void Update () {
 
-
         FireGun(input.GetFire);
         timer += Time.deltaTime;
 
         switch (CurrentGunState) {
             case GunState.Firing:
                 {
-            
                     if (timer > FireRate)
                     {
                         timer = 0;
-                        currentClip -= 1;
-                        GameObject bulletObj = pool.SpawnObject("Bullet", gunPos.position, facingForward);
-                        if (bulletObj)
-                        {
-                            Bullet bullet = bulletObj.GetComponent<Bullet>();
-                            bullet.bulletMaxSpeed = BulletSpeed;
-                            bullet.bulletDamage = BulletDamage;
-                            bullet.facingForward = facingForward;
-                            // bullet.whoShotMe = transform.parent.name;
-                        }
-
+                        FireShot();
                     }
                     break;
                 }
@@ -144,11 +148,8 @@ public class MachineGun : Gun {
                     if (timer > ReloadTime)
                     {
                         timer = 0;
-                        CurrentGunState = GunState.Idle;
-                        currentClip = ClipSize;
-                        
+                        Reload();
                     }
-                  
                     break;
                 }
             case GunState.NoAmmo:
@@ -159,10 +160,6 @@ public class MachineGun : Gun {
                 {
                     break;
                 }
-           
-
         }  
-
-
     }
 }

@@ -22,30 +22,28 @@ public class LeftToRightAi : InputComponent {
     
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         screen = GameObject.Find("ScreenManager").GetComponent<ScreenManager>();
-		
-	}
+    }
 	
 	// Update is called once per frame
-	void Update () {
-    
+	void Update ()
+    {
         if(transform.position.x > (screen.rightExtend.x * HowFar))
         {
             goingRight = false;
-  
         }
         else if (transform.position.x < (screen.leftExtend.x * HowFar))
         {
             goingRight = true;
-  
-
         }
 
         if (goingRight)
         {
             GetLeft = 1.0f;
-        }else
+        }
+        else
         {
             GetLeft = -1.0f;
         }

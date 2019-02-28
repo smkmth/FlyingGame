@@ -735,6 +735,7 @@ MonoBehaviour:
   acceleration: 1000
   rb: {fileID: 0}
   input: {fileID: 0}
+  playerPos: 0
 --- !u!114 &114286292341964552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -756,7 +757,7 @@ MonoBehaviour:
   fireRate: 0.1
   reloadTime: 2
   bulletSpeed: 30
-  bulletDamage: 10
+  bulletDamage: 5
   facingForward: 0
 --- !u!114 &114598028285872798
 MonoBehaviour:
@@ -771,7 +772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainEngine: {fileID: 0}
   gunArray: []
-  maxHealth: 100
+  maxHealth: 10
 --- !u!114 &114710083280800952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -793,7 +794,7 @@ MonoBehaviour:
   fireRate: 0.1
   reloadTime: 2
   bulletSpeed: 30
-  bulletDamage: 10
+  bulletDamage: 5
   facingForward: 0
 --- !u!114 &114834923910942980
 MonoBehaviour:

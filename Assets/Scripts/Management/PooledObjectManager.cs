@@ -7,6 +7,7 @@ public class PooledObjectManager : MonoBehaviour {
 
 
     public GameObject Player;
+    public List<GameObject> EnemyList;
     public GameObject Enemy;
     public GameObject Bullet;
 
@@ -48,15 +49,17 @@ public class PooledObjectManager : MonoBehaviour {
         ObjectPool = new List<GameObject>();
         currentpoolcount = 0;
 
-        //always init player first, enemies next then bullets last 
-        Init(Player, PlayersToPool, ObjectPool, PlayerName);
-        Init(Enemy, EnemiesToPool, ObjectPool, EnemyName);
-        Init(Bullet, BulletsToPool, ObjectPool, BulletName);
-
-
+      
 	}
 
+    public void SetUpScene()
+    {
+        //always init player first, enemies next then bullets last 
+        Init(Player, PlayersToPool, ObjectPool, PlayerName);
+        Init(Bullet, BulletsToPool, ObjectPool, BulletName);
+        EnemyList = InitList(Enemy, EnemiesToPool, ObjectPool, EnemyName);
 
+    }
 
     private void Init(GameObject objectToInit, int numToInit, List<GameObject> listToInitTo, string nameToSave)
     {
@@ -87,6 +90,39 @@ public class PooledObjectManager : MonoBehaviour {
             }
         }
     }
+    private List<GameObject> InitList(GameObject objectToInit, int numToInit, List<GameObject> listToInitTo, string nameToSave)
+    {
+        List<GameObject> gameObjectList = new List<GameObject>();
+        for (int i = 0; i < numToInit; i++)
+        {
+            if (currentpoolcount < ObjectCap || PermissivePool)
+            {
+                currentpoolcount++;
+                GameObject thing = Instantiate(objectToInit);
+                thing.SetActive(false);
+                thing.name = nameToSave;
+                listToInitTo.Add(thing);
+                gameObjectList.Add(thing);
+                if (i == 0)
+                {
+                    thing.layer = 10;
+                }
+                else
+                {
+                    thing.layer = 11;
+                }
+              
+            }
+            else
+            {
+                Assert.IsTrue(false, "Overflow at " + currentpoolcount + " " + nameToSave + "s");
+                return null;
+            }
+
+        }
+        return gameObjectList; 
+    }
+
 
     public GameObject SpawnObject(string nameToLookFor, Vector3 transformPos, bool facingForward)
     {
@@ -131,5 +167,24 @@ public class PooledObjectManager : MonoBehaviour {
                 }
             }
         }
+    }
+    //destroys all the objects in the scene
+    public void TearDownObjects()
+    {
+        foreach(GameObject anobject in ObjectPool)
+        {
+            Destroy(anobject);
+
+        }
+        ObjectPool.Clear();
+    }
+
+    public void DespawnAllObjects()
+    {
+        foreach(GameObject anobject in ObjectPool)
+        {
+            DespwanObject(anobject);
+        }
+
     }
 }

@@ -93,7 +93,6 @@ public class Speedy : Engine
 
         }
 
-        Debug.Log(playerPos +" " + (screen.leftExtend.y - transform.position.x));
 
         if ((screen.upExtend.y - transform.position.y) < 0)
         {

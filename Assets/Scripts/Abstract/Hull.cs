@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(InputComponent))]
 public abstract class Hull : MonoBehaviour {
+
+    public abstract UIManager uiManager { get; set; }
 
     public abstract Engine MainEngine { get; set; }
     public abstract List<Gun> GunList { get; set; }
@@ -15,10 +16,16 @@ public abstract class Hull : MonoBehaviour {
 
     public abstract void BlowUp();
 
+    public abstract void SetUp();
 
     public void TakeDamage(int damageToTake)
     {
         Health -= damageToTake;
+        if (uiManager)
+        {
+            uiManager.UpdateHealthBar(Health);
+
+        }
         if (Health <= 0)
         {
             BlowUp();
