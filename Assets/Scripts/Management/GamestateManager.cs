@@ -4,45 +4,154 @@ using UnityEngine;
 
 public enum GameState
 {
+    MainMenu,
+    SetUp,
     Playing,
     GameOver
 }
 [RequireComponent(typeof(Spawner))]
 public class GamestateManager : MonoBehaviour {
 
-    public GameObject Player;
+    private GameObject Player;
 
     public UIManager uIManager;
-    public Spawner spawner;
+    private Spawner spawner;
+    private ScreenManager screen;
+    private PooledObjectManager pool;
+
+    [Header("Object Pooler Settings")]
+    //how many objects we want to allocate upfront
+    [SerializeField]
+    private int BulletsToPool;
+    [SerializeField]
+    private int EnemiesToPool;
+    [SerializeField]
+    private int PlayersToPool;
+
+    [SerializeField]
+    private string PlayerName;
+    [SerializeField]
+    private string EnemyName;
+    [SerializeField]
+    private string BulletName;
+
+    public GameObject PlayerPrefab;
+    public List<GameObject> EnemyPrefabList;
+    public GameObject BulletPrefab;
+
+
+    [Header("Enemy Spawner Settings")]
+    [SerializeField]
+    private int AmountOfEnemies;
+    [SerializeField]
+    private float LowXRange;
+    [SerializeField]
+    private float HighXRange;
+    [SerializeField]
+    private float LowYRange;
+    [SerializeField]
+    private float HighYRange;
+    [SerializeField]
+    public float WaveTimer;
+    private float timer;
+
+    [Header ("Start Positions")]
+    public Vector3 PlayerStartPos;
+
+    private Vector3 EnemyStartPos;
+
+    public List<GameObject> EnemyList;
 
     public GameState CurrentGameState { get; set; }
 
-    private void Start()
+    private void Awake()
     {
-        spawner = GetComponent<Spawner>();
-        CurrentGameState = GameState.Playing;
-        spawner.InitialSpawn();
-        Player = spawner.GetPlayer();
-        Restart();
+
+        screen = GameObject.Find("ScreenManager").GetComponent<ScreenManager>();
+        pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
+
+        CurrentGameState = GameState.SetUp;
         
+    }
+
+
+    public void StartGame()
+    {
+        InitialSpawn();
+        CurrentGameState = GameState.Playing;
+        timer = 0;
+
+    }
+
+    public void InitialSpawn()
+    {
+        pool.DespawnAllObjects();
+        InitScene();
+
+        Player = pool.SpawnObject(PlayerName, PlayerStartPos, true);
+        Player.layer = LayerMask.NameToLayer("Player");
+        Player.GetComponent<Hull>().SetUp();
+    }
+
+    public GameObject GetPlayer()
+    {
+        return Player;
+    }
+
+    public void InitEnemies()
+    {
+        foreach (GameObject enemy in EnemyPrefabList)
+        {
+            pool.Init(enemy, EnemiesToPool, EnemyName);
+        }
+    }
+
+    public void InitScene()
+    {
+        pool.Init(PlayerPrefab, PlayersToPool, PlayerName);
+        pool.Init(BulletPrefab, BulletsToPool, BulletName);
+        InitEnemies();
     }
 
     // Update is called once per frame
     void Update () {
+        timer += Time.deltaTime;
 
-        if (Player) { 
-            if(Player.activeSelf != true)
+        if (CurrentGameState == GameState.Playing)
+        {
+
+            if (Player)
             {
-                CurrentGameState = GameState.GameOver;
-                GameOver();
+                if (Player.activeSelf != true)
+                {
+                    CurrentGameState = GameState.GameOver;
+                    GameOver();
+                }
+                else
+                {
+                    CurrentGameState = GameState.Playing;
+                }
             }
-            else
+            if (timer > WaveTimer)
             {
-                CurrentGameState = GameState.Playing;
+                EnemySpawn(AmountOfEnemies, LowXRange, HighXRange, LowYRange, HighYRange);
+                timer = 0;
             }
         }
-		
-	}
+    }
+
+    public void EnemySpawn(int amountOfEnemies, float lowXRange, float highXRange, float lowYRange, float highYRange)
+    {
+        
+        for (int i = 0; i < amountOfEnemies; i++)
+        {
+            EnemyStartPos.x = Random.Range(lowXRange, highXRange);
+            EnemyStartPos.y = Random.Range(lowYRange, highYRange);
+            GameObject enemy = pool.SpawnObject(EnemyName, EnemyStartPos, false);
+            enemy.layer = 11;
+            EnemyList.Add(enemy);
+        }
+    }
 
     void GameOver()
     {
@@ -52,6 +161,16 @@ public class GamestateManager : MonoBehaviour {
 
     public void Restart()
     {
-        spawner.ResetObjects();
+        pool.DespawnAllObjects();
+        StartGame();
     }
+ 
+
+    public void TeardownSpawn()
+    {
+        pool.TearDownObjects();
+
+    }
+
+   
 }

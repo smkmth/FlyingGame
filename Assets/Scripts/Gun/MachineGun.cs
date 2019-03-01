@@ -51,6 +51,7 @@ public class MachineGun : Gun {
     public override int BulletDamage { get; set; }
 
     public bool facingForward;
+    public bool isPlayer;
 
 
     //the timer we check reload and firerate with
@@ -75,14 +76,17 @@ public class MachineGun : Gun {
         //initilaze values
         timer = 0.0f;
         CurrentGunState = GunState.Idle;
+        
         //check facing direction
         if (transform.parent.name != "Player")
         {
             facingForward = false;
+            isPlayer = false;
         }
         else
         {
             facingForward = true;
+            isPlayer = true;
         }
     }
 
@@ -112,6 +116,15 @@ public class MachineGun : Gun {
         if (bulletObj)
         {
             Bullet bullet = bulletObj.GetComponent<Bullet>();
+            if (isPlayer)
+            {
+                bullet.gameObject.layer = LayerMask.NameToLayer("PlayerBullet");
+            } 
+            else
+            {
+                bullet.gameObject.layer = LayerMask.NameToLayer("EnemyBullet");
+
+            }
             bullet.bulletMaxSpeed = BulletSpeed;
             bullet.bulletDamage = BulletDamage;
             bullet.facingForward = facingForward;

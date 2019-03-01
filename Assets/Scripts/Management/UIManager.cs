@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour {
 
     public GameObject GameOverPanel;
+    public GameObject MainMenu;
     public GamestateManager manager;
     public Slider healthBar;
 
@@ -13,6 +14,7 @@ public class UIManager : MonoBehaviour {
 	void Start () {
 
         GameOverPanel.SetActive(false);
+        MainMenu.SetActive(true);
 	}
 	
 	public void GameOver()
@@ -23,12 +25,19 @@ public class UIManager : MonoBehaviour {
     public void RestartGame()
     {
         GameOverPanel.SetActive(false);
-
         manager.Restart();
 
     }
+
+    public void StartGame()
+    {
+        MainMenu.SetActive(false);
+
+        manager.StartGame();
+    }
     public void SetHealthBar(float maxhealth)
     {
+        Debug.Log("Health set to " + maxhealth);
         healthBar.maxValue = maxhealth;
         healthBar.value = maxhealth;
     }

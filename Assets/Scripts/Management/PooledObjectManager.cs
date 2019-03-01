@@ -6,26 +6,7 @@ using UnityEngine.Assertions;
 public class PooledObjectManager : MonoBehaviour {
 
 
-    public GameObject Player;
-    public List<GameObject> EnemyList;
-    public GameObject Enemy;
-    public GameObject Bullet;
-
     private List<GameObject> ObjectPool;
-
-     //how many objects we want to allocate upfront
-
-    [SerializeField]
-    private int ObjectCap;
-
-    [SerializeField]
-    private int BulletsToPool;
-
-    [SerializeField]
-    private int EnemiesToPool;
-
-    [SerializeField]
-    private int PlayersToPool;
 
     [SerializeField]
     private bool PermissivePool;
@@ -33,13 +14,8 @@ public class PooledObjectManager : MonoBehaviour {
     private int currentpoolcount;
 
     [SerializeField]
-    private string PlayerName;
+    private int ObjectCap;
 
-    [SerializeField]
-    private string EnemyName;
-
-    [SerializeField]
-    private string BulletName;
 
 
 
@@ -52,16 +28,9 @@ public class PooledObjectManager : MonoBehaviour {
       
 	}
 
-    public void SetUpScene()
-    {
-        //always init player first, enemies next then bullets last 
-        Init(Player, PlayersToPool, ObjectPool, PlayerName);
-        Init(Bullet, BulletsToPool, ObjectPool, BulletName);
-        EnemyList = InitList(Enemy, EnemiesToPool, ObjectPool, EnemyName);
+ 
 
-    }
-
-    private void Init(GameObject objectToInit, int numToInit, List<GameObject> listToInitTo, string nameToSave)
+    public void Init(GameObject objectToInit, int numToInit, string nameToSave)
     {
        
         
@@ -73,15 +42,8 @@ public class PooledObjectManager : MonoBehaviour {
                 GameObject thing = Instantiate(objectToInit);
                 thing.SetActive(false);
                 thing.name = nameToSave;
-                listToInitTo.Add(thing);
-                if (i == 0)
-                {
-                    thing.layer = 10;
-                }
-                else
-                {
-                    thing.layer = 11;
-                }
+                ObjectPool.Add(thing);
+          
             }
             else
             {

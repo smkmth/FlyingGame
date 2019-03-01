@@ -24,12 +24,10 @@ public class DoubleGunShip : Hull
 
     private void Start()
     {
-        Debug.Log("start");
         MaxHealth = maxHealth;
+        Health = MaxHealth;
         GunList = gunArray;
         MainEngine = mainEngine;
-        Health = MaxHealth;
-
 
         Debug.Log(name + " spawned ");
 
@@ -42,12 +40,14 @@ public class DoubleGunShip : Hull
         pool.DespwanObject(gameObject);
     }
 
+    //This is just setting up the UI
     public override void SetUp()
     {
-        Debug.Log("setup");
+        MaxHealth = maxHealth;
         Health = MaxHealth;
         uiManager = GameObject.Find("UI").GetComponent<UIManager>();
         uiManager.SetHealthBar(MaxHealth);
+        Debug.Log("Set health to " + Health + MaxHealth);
 
         if (!uiManager)
         {

@@ -15,10 +15,10 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - Bullet
+  - PlayerBullet
   - Player
   - Goon
-  - 
+  - EnemyBullet
   - 
   - 
   - 

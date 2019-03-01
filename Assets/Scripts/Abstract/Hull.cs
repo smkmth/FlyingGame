@@ -34,7 +34,6 @@ public abstract class Hull : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log( other.name + " hit " + name);
 
         if (other.tag == "bullet")
         {
