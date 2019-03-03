@@ -83,7 +83,7 @@ public class Speedy : Engine
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
 
         if (rb.velocity.magnitude < MaxSpeed)

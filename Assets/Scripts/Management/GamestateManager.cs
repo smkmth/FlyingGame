@@ -9,16 +9,14 @@ public enum GameState
     Playing,
     GameOver
 }
-[RequireComponent(typeof(Spawner))]
 public class GamestateManager : MonoBehaviour {
 
     private GameObject Player;
 
     public UIManager uIManager;
-    private Spawner spawner;
     private ScreenManager screen;
     private PooledObjectManager pool;
-
+    
     [Header("Object Pooler Settings")]
     //how many objects we want to allocate upfront
     [SerializeField]
@@ -35,9 +33,15 @@ public class GamestateManager : MonoBehaviour {
     [SerializeField]
     private string BulletName;
 
-    public GameObject PlayerPrefab;
+    public GameObject       PlayerPrefab;
     public List<GameObject> EnemyPrefabList;
-    public GameObject BulletPrefab;
+    public GameObject       BulletPrefab;
+
+    public GameObject gunPrefab;
+    public GameObject enginePrefab;
+    private DoubleGunShip hull;
+    private PlayerInput input;
+
 
 
     [Header("Enemy Spawner Settings")]
@@ -108,6 +112,7 @@ public class GamestateManager : MonoBehaviour {
 
     public void InitScene()
     {
+        //pool.Init(ShipBuilder.CreateShip(hull, input, enginePrefab, gunPrefab), PlayersToPool, PlayerName);
         pool.Init(PlayerPrefab, PlayersToPool, PlayerName);
         pool.Init(BulletPrefab, BulletsToPool, BulletName);
         InitEnemies();
@@ -148,8 +153,12 @@ public class GamestateManager : MonoBehaviour {
             EnemyStartPos.x = Random.Range(lowXRange, highXRange);
             EnemyStartPos.y = Random.Range(lowYRange, highYRange);
             GameObject enemy = pool.SpawnObject(EnemyName, EnemyStartPos, false);
-            enemy.layer = 11;
-            EnemyList.Add(enemy);
+            if (enemy)
+            {
+                enemy.layer = 11;
+
+                EnemyList.Add(enemy);
+            }
         }
     }
 

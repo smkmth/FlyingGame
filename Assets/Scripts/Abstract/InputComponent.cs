@@ -1,6 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum AIState
+{
+    MovingToInitPos,
+    InPos
+
+}
 
 public abstract class InputComponent : MonoBehaviour {
 

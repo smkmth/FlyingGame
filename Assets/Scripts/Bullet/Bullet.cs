@@ -43,18 +43,8 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (facingForward)
-        {
-            rb.velocity = (Vector3.up * bulletMaxSpeed);
-        }
-        else
-        {
-
-            rb.velocity = (-Vector3.up * bulletMaxSpeed);
-
-        }
-
+        rb.velocity = transform.up * bulletMaxSpeed;
+      
 
 
         if (transform.position.y > topScreenPos || transform.position.y < bottomScreenPos)
