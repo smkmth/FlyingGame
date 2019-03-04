@@ -160,6 +160,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86eefa69c8118ac4ab7f5874e17bc036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &162458409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 162458410}
+  - component: {fileID: 162458411}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &162458410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162458409}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &162458411
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162458409}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 10
+  m_AngularDrag: 10
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 120
+  m_CollisionDetection: 0
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,7 +923,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 655494b331d41b24a940733df5310d17, type: 2}
+  - {fileID: 2100000, guid: be10275620c350249a322ab7f3094654, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1966,7 +2013,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0f54ca1824753a74d9fd3cbabaeea903, type: 2}
+  - {fileID: 2100000, guid: cd8e47c346a33674a94cf258382910e0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2002,7 +2049,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485446740}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10.8}
+  m_LocalPosition: {x: 0, y: 0, z: 27.6}
   m_LocalScale: {x: 150, y: 200, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2310,14 +2357,16 @@ MonoBehaviour:
   PlayerName: Player
   EnemyName: Enemy
   BulletName: Bullet
-  PlayerPrefab: {fileID: 1848944189046642, guid: 9b9fd0e8acab0074098bf0a9d02c40c8,
-    type: 3}
-  EnemyPrefabList:
-  - {fileID: 1967130690947980, guid: 412aa339d67643c4494d83c737ca97fd, type: 3}
   BulletPrefab: {fileID: 1562005442395964, guid: 7cfe8a492f097264aa4a975566818830,
     type: 3}
-  gunPrefab: {fileID: 0}
-  enginePrefab: {fileID: 0}
+  PlayerPrefab: {fileID: 162458409}
+  EnemyPrefabList:
+  - {fileID: 1967130690947980, guid: 412aa339d67643c4494d83c737ca97fd, type: 3}
+  gunPrefab: {fileID: 1503423478072812, guid: 207e01cb7b0832a42af475ba33ac0fbd, type: 3}
+  enginePrefab: {fileID: 1740826441869082, guid: 93a5cc6ed287d2046a41f27b450c360a,
+    type: 3}
+  hullPrefab: {fileID: 446606476427661021, guid: e0347dea6b341ce468e1c4e403a3b5fb,
+    type: 3}
   AmountOfEnemies: 5
   LowXRange: -50
   HighXRange: 50

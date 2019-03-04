@@ -27,6 +27,8 @@ public class PlayerInput : InputComponent {
         //movement
         GetForward = Input.GetAxis("Vertical");
         GetLeft     = Input.GetAxis("Horizontal");
+       
+        
         //firing
         if (Input.GetButton("Fire1"))
         {

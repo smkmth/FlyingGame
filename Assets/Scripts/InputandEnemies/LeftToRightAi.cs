@@ -55,7 +55,11 @@ public class LeftToRightAi : InputComponent {
         {
             HowFarY = 1;
         }
-        
+        if (HowFarY < .5f)
+        {
+            HowFarY = .5f;
+        }
+
     }
 	
 	// Update is called once per frame

@@ -33,14 +33,13 @@ public class GamestateManager : MonoBehaviour {
     [SerializeField]
     private string BulletName;
 
+    public GameObject       BulletPrefab;
     public GameObject       PlayerPrefab;
     public List<GameObject> EnemyPrefabList;
-    public GameObject       BulletPrefab;
 
     public GameObject gunPrefab;
     public GameObject enginePrefab;
-    private DoubleGunShip hull;
-    private PlayerInput input;
+    public GameObject hullPrefab;
 
 
 
@@ -93,8 +92,15 @@ public class GamestateManager : MonoBehaviour {
         InitScene();
 
         Player = pool.SpawnObject(PlayerName, PlayerStartPos, true);
-        Player.layer = LayerMask.NameToLayer("Player");
-        Player.GetComponent<Hull>().SetUp();
+        ShipBuilder.CreateShip(Player, hullPrefab, enginePrefab, gunPrefab, InputComponentType.Player, 100);
+    }
+
+    public void InitScene()
+    {
+        //pool.Init(ShipBuilder.CreateShip(hull, input, enginePrefab, gunPrefab), PlayersToPool, PlayerName);
+        pool.Init(PlayerPrefab, PlayersToPool, PlayerName);
+        pool.Init(BulletPrefab, BulletsToPool, BulletName);
+        InitEnemies();
     }
 
     public GameObject GetPlayer()
@@ -110,13 +116,7 @@ public class GamestateManager : MonoBehaviour {
         }
     }
 
-    public void InitScene()
-    {
-        //pool.Init(ShipBuilder.CreateShip(hull, input, enginePrefab, gunPrefab), PlayersToPool, PlayerName);
-        pool.Init(PlayerPrefab, PlayersToPool, PlayerName);
-        pool.Init(BulletPrefab, BulletsToPool, BulletName);
-        InitEnemies();
-    }
+
 
     // Update is called once per frame
     void Update () {

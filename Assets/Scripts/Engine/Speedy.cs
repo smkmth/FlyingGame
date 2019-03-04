@@ -32,8 +32,8 @@ public class Speedy : Engine
 
     public override float Acceleration { get; set; }
 
-    private Vector3 moveForward;
-    private Vector3 moveLeft;
+    public Vector3 moveForward;
+    public Vector3 moveLeft;
     private ScreenManager screen;
 
 
@@ -49,12 +49,15 @@ public class Speedy : Engine
         MaxSpeed = maxSpeed;
         Acceleration = acceleration;
 
-        Vector3 moveLeft = new Vector3(0, 0, 0);
-        Vector3 moveForward = new Vector3(0, 0, 0);
+        moveLeft = new Vector3(0, 0, 0);
+        moveForward = new Vector3(0, 0, 0);
+
+        playerPos = PlayerPos.Fine;
     }
 
     public override void MoveForward(float input)
-    { 
+    {
+       
         if (playerPos == PlayerPos.TooHigh)
         {
             input = -1;
@@ -68,7 +71,8 @@ public class Speedy : Engine
     }
 
     public override void MoveLeft(float input)
-    {
+    {     
+       
         if (playerPos == PlayerPos.TooRight)
         {
             input = -1;
@@ -77,7 +81,7 @@ public class Speedy : Engine
         {
             input = 1;
         }
-        moveForward.x = input;
+        moveLeft.x = input;
         rb.AddForce(moveLeft * Acceleration);
 
     }
@@ -85,13 +89,15 @@ public class Speedy : Engine
     // Update is called once per frame
     void FixedUpdate()
     {
-
         if (rb.velocity.magnitude < MaxSpeed)
         {
+
+
             MoveLeft(input.GetLeft);
             MoveForward(input.GetForward);
-
         }
+       
+
 
 
         if ((screen.upExtend.y - transform.position.y) < 0)

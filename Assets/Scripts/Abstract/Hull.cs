@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public abstract class Hull : MonoBehaviour {
 
     public abstract UIManager uiManager { get; set; }
 
     public abstract Engine MainEngine { get; set; }
     public abstract List<Gun> GunList { get; set; }
+
 
     public abstract int Health { get; set; }
 

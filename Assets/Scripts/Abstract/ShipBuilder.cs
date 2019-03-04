@@ -1,21 +1,44 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum InputComponentType
+{
+    Player, 
+    LeftToRightAi
 
+}
 public static class ShipBuilder
 {
-    public static GameObject CreateShip(Hull hull, InputComponent input, GameObject engine, GameObject gun)
+    public static GameObject CreateShip(GameObject ship, GameObject body, GameObject engine, GameObject gun, InputComponentType input, int maxHealth)
     {
-        Debug.Log("here");
-        GameObject ship = new GameObject("Ship");
+        ship.layer = LayerMask.NameToLayer("Player");
 
+        GameObject.Instantiate(body, ship.transform);
+        GameObject.Instantiate(gun, ship.transform);
+        GameObject.Instantiate(engine, ship.transform);
+        body.GetComponent<Hull>().MaxHealth = maxHealth;
+        body.GetComponent<Hull>().SetUp();
 
-        //hull = ship.AddComponent<Hull>(hull);
-        input = ship.AddComponent<InputComponent>();
-        engine = new GameObject();
-        engine.transform.parent = ship.transform;
-        gun = new GameObject();
-        gun.transform.parent = ship.transform;
+        switch (input)
+        {
+            case InputComponentType.Player:
+                {
+
+                    ship.AddComponent<PlayerInput>();
+                    break;
+
+                }
+            case InputComponentType.LeftToRightAi:
+                {
+                    ship.AddComponent<LeftToRightAi>();
+
+                    break;
+
+                }
+        }
+
+        
+  
         return ship; 
     }
 
