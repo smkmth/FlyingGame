@@ -34,15 +34,16 @@ public class GamestateManager : MonoBehaviour {
     private string BulletName;
 
     public GameObject       BulletPrefab;
-    public GameObject       PlayerPrefab;
-    public List<GameObject> EnemyPrefabList;
 
+    [Header("Ship Parts")]
+
+    public GameObject ShipBase;
     public GameObject gunPrefab;
     public GameObject enginePrefab;
     public GameObject hullPrefab;
+    public GameObject enemyHullPrefab;
+    public GameObject enemyEnginePrefab;
 
-    public int PlayerStartHealth;
-    public int EnemyStartHealth;
 
 
 
@@ -92,8 +93,8 @@ public class GamestateManager : MonoBehaviour {
     {
         pool.TearDownObjects();
         //setup player
-        Player = pool.InitGameObject(PlayerPrefab, PlayersToPool, PlayerName);
-        ShipBuilder.CreateShip(Player, hullPrefab, enginePrefab, gunPrefab, InputComponentType.Player, PlayerStartHealth);
+        Player = pool.InitGameObject(ShipBase, PlayersToPool, PlayerName);
+        ShipBuilder.CreateShip(Player, hullPrefab, enginePrefab, gunPrefab, InputComponentType.Player);
         Player.layer = LayerMask.NameToLayer("Player");
         //set up bullets
         pool.Init(BulletPrefab, BulletsToPool, BulletName);
@@ -114,11 +115,10 @@ public class GamestateManager : MonoBehaviour {
 
     public void InitEnemies()
     {
-        EnemyList = pool.InitList(PlayerPrefab, EnemiesToPool, EnemyName);
+        EnemyList = pool.InitList(ShipBase, EnemiesToPool, EnemyName);
         foreach (GameObject aenemey in EnemyList)
         {
-            ShipBuilder.CreateShip(aenemey, hullPrefab, enginePrefab, gunPrefab, InputComponentType.LeftToRightAi, EnemyStartHealth);
-            //aenemey.layer = LayerMask.NameToLayer("Goon");
+            ShipBuilder.CreateShip(aenemey, enemyHullPrefab, enemyEnginePrefab, gunPrefab, InputComponentType.LeftToRightAi);
             ShipBuilder.SetLayerRecursively(aenemey, (LayerMask.NameToLayer("Goon")));
         }
     }

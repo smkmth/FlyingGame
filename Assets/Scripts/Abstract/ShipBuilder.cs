@@ -9,14 +9,12 @@ public enum InputComponentType
 }
 public static class ShipBuilder
 {
-    public static GameObject CreateShip(GameObject ship, GameObject body, GameObject engine, GameObject gun, InputComponentType input, int maxHealth)
+    public static GameObject CreateShip(GameObject ship, GameObject body, GameObject engine, GameObject gun, InputComponentType input)
     {
 
         GameObject.Instantiate(body, ship.transform);
         GameObject.Instantiate(gun, ship.transform);
         GameObject.Instantiate(engine, ship.transform);
-        body.GetComponent<Hull>().MaxHealth = maxHealth;
-
         switch (input)
         {
             case InputComponentType.Player:
