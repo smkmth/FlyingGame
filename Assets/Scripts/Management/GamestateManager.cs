@@ -41,6 +41,9 @@ public class GamestateManager : MonoBehaviour {
     public GameObject enginePrefab;
     public GameObject hullPrefab;
 
+    public int PlayerStartHealth;
+    public int EnemyStartHealth;
+
 
 
     [Header("Enemy Spawner Settings")]
@@ -78,44 +81,52 @@ public class GamestateManager : MonoBehaviour {
     }
 
 
+    public void InitGame()
+    {
+        InitScene();
+        StartGame();
+
+    }
+
+    private void InitScene()
+    {
+        pool.TearDownObjects();
+        //setup player
+        Player = pool.InitGameObject(PlayerPrefab, PlayersToPool, PlayerName);
+        ShipBuilder.CreateShip(Player, hullPrefab, enginePrefab, gunPrefab, InputComponentType.Player, PlayerStartHealth);
+        Player.layer = LayerMask.NameToLayer("Player");
+        //set up bullets
+        pool.Init(BulletPrefab, BulletsToPool, BulletName);
+        //set up enemies
+        InitEnemies();
+    }
+
     public void StartGame()
     {
-        InitialSpawn();
+
+        Player = pool.SpawnObject(PlayerName, PlayerStartPos, true);
         CurrentGameState = GameState.Playing;
+        Player.GetComponentInChildren<Hull>().SetUp();
         timer = 0;
 
     }
 
-    public void InitialSpawn()
-    {
-        pool.DespawnAllObjects();
-        InitScene();
 
-        Player = pool.SpawnObject(PlayerName, PlayerStartPos, true);
-        ShipBuilder.CreateShip(Player, hullPrefab, enginePrefab, gunPrefab, InputComponentType.Player, 100);
-    }
-
-    public void InitScene()
+    public void InitEnemies()
     {
-        //pool.Init(ShipBuilder.CreateShip(hull, input, enginePrefab, gunPrefab), PlayersToPool, PlayerName);
-        pool.Init(PlayerPrefab, PlayersToPool, PlayerName);
-        pool.Init(BulletPrefab, BulletsToPool, BulletName);
-        InitEnemies();
+        EnemyList = pool.InitList(PlayerPrefab, EnemiesToPool, EnemyName);
+        foreach (GameObject aenemey in EnemyList)
+        {
+            ShipBuilder.CreateShip(aenemey, hullPrefab, enginePrefab, gunPrefab, InputComponentType.LeftToRightAi, EnemyStartHealth);
+            //aenemey.layer = LayerMask.NameToLayer("Goon");
+            ShipBuilder.SetLayerRecursively(aenemey, (LayerMask.NameToLayer("Goon")));
+        }
     }
 
     public GameObject GetPlayer()
     {
         return Player;
     }
-
-    public void InitEnemies()
-    {
-        foreach (GameObject enemy in EnemyPrefabList)
-        {
-            pool.Init(enemy, EnemiesToPool, EnemyName);
-        }
-    }
-
 
 
     // Update is called once per frame
@@ -181,5 +192,5 @@ public class GamestateManager : MonoBehaviour {
 
     }
 
-   
+
 }

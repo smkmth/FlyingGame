@@ -32,8 +32,7 @@ public class PooledObjectManager : MonoBehaviour {
 
     public void Init(GameObject objectToInit, int numToInit, string nameToSave)
     {
-       
-        
+
         for (int i = 0; i < numToInit; i++)
         {
             if (currentpoolcount < ObjectCap || PermissivePool)
@@ -52,7 +51,32 @@ public class PooledObjectManager : MonoBehaviour {
             }
         }
     }
-    private List<GameObject> InitList(GameObject objectToInit, int numToInit, List<GameObject> listToInitTo, string nameToSave)
+
+    public GameObject InitGameObject(GameObject objectToInit, int numToInit, string nameToSave)
+    {
+        GameObject thing = null;
+        for (int i = 0; i < numToInit; i++)
+        {
+            if (currentpoolcount < ObjectCap || PermissivePool)
+            {
+                currentpoolcount++;
+                thing = Instantiate(objectToInit);
+                thing.SetActive(false);
+                thing.name = nameToSave;
+                ObjectPool.Add(thing);
+ 
+
+            }
+            else
+            {
+                Assert.IsTrue(false, "Overflow at " + currentpoolcount + " " + nameToSave + "s");
+                return null;
+            }
+        }
+        return thing;
+    }
+
+    public List<GameObject> InitList(GameObject objectToInit, int numToInit, string nameToSave)
     {
         List<GameObject> gameObjectList = new List<GameObject>();
         for (int i = 0; i < numToInit; i++)
@@ -63,16 +87,8 @@ public class PooledObjectManager : MonoBehaviour {
                 GameObject thing = Instantiate(objectToInit);
                 thing.SetActive(false);
                 thing.name = nameToSave;
-                listToInitTo.Add(thing);
+                ObjectPool.Add(thing);
                 gameObjectList.Add(thing);
-                if (i == 0)
-                {
-                    thing.layer = 10;
-                }
-                else
-                {
-                    thing.layer = 11;
-                }
               
             }
             else
@@ -121,6 +137,7 @@ public class PooledObjectManager : MonoBehaviour {
             //check if two game objects are the same
             if (anobject.GetInstanceID() == objectToDespawn.GetInstanceID())
             {
+
                 //check if the object has any deactivated versions
                 if (anobject.activeSelf)
                 {

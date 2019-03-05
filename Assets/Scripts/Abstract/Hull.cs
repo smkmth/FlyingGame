@@ -26,6 +26,10 @@ public abstract class Hull : MonoBehaviour {
             uiManager.UpdateHealthBar(Health);
 
         }
+        else
+        {
+            Debug.Log("Enemy Hit, health = " + Health);
+        }
         if (Health <= 0)
         {
             BlowUp();

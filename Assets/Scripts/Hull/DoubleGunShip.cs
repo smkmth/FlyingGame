@@ -20,7 +20,7 @@ public class DoubleGunShip : Hull
 
     public override UIManager uiManager { get; set; }
 
-    private PooledObjectManager pool;
+    public PooledObjectManager pool;
 
     private void Start()
     {
@@ -30,14 +30,14 @@ public class DoubleGunShip : Hull
         MainEngine = mainEngine;
 
         Debug.Log(name + " spawned ");
-
+        
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
     }
 
     public override void BlowUp()
     {
-
-        pool.DespwanObject(gameObject);
+        Debug.Log("Exploaded");
+        pool.DespwanObject(gameObject.transform.parent.gameObject);
     }
 
     //This is just setting up the UI
@@ -47,12 +47,9 @@ public class DoubleGunShip : Hull
         Health = MaxHealth;
         uiManager = GameObject.Find("UI").GetComponent<UIManager>();
         uiManager.SetHealthBar(MaxHealth);
-        Debug.Log("Set health to " + Health + MaxHealth);
-
-        if (!uiManager)
-        {
-            Debug.Log("Failed setup");
-        }
+        Debug.Log("Set health to "  + MaxHealth );
+          
+        
     }
 
     

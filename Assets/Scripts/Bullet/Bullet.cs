@@ -49,7 +49,7 @@ public class Bullet : MonoBehaviour
 
         if (transform.position.y > topScreenPos || transform.position.y < bottomScreenPos)
         {
-            pool.DespwanObject(this.gameObject);
+           pool.DespwanObject(this.gameObject);
 
         }
 

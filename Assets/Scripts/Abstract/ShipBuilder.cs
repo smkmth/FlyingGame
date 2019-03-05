@@ -11,13 +11,11 @@ public static class ShipBuilder
 {
     public static GameObject CreateShip(GameObject ship, GameObject body, GameObject engine, GameObject gun, InputComponentType input, int maxHealth)
     {
-        ship.layer = LayerMask.NameToLayer("Player");
 
         GameObject.Instantiate(body, ship.transform);
         GameObject.Instantiate(gun, ship.transform);
         GameObject.Instantiate(engine, ship.transform);
         body.GetComponent<Hull>().MaxHealth = maxHealth;
-        body.GetComponent<Hull>().SetUp();
 
         switch (input)
         {
@@ -43,6 +41,15 @@ public static class ShipBuilder
     }
 
 
+    public static void SetLayerRecursively(GameObject go, int layerNumber)
+    {
+        foreach (Transform trans in go.GetComponentsInChildren<Transform>(true))
+        {
+            trans.gameObject.layer = layerNumber;
+        }
+    }
 
-	
+
+
+
 }

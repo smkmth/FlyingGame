@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour {
     {
         MainMenu.SetActive(false);
 
-        manager.StartGame();
+        manager.InitGame();
     }
     public void SetHealthBar(float maxhealth)
     {
