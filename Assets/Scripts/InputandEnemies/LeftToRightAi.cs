@@ -10,6 +10,7 @@ public class LeftToRightAi : InputComponent {
     public override float GetLeft { get; set; }
 
     public override bool GetFire { get; set; }
+    public override bool GetRoll { get; set; }
 
     private ScreenManager screen;
 

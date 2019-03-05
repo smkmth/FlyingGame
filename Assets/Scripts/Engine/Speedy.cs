@@ -18,6 +18,9 @@ public class Speedy : Engine
     private float maxSpeed;
 
     [SerializeField]
+    private float rollForce;
+
+    [SerializeField]
     private float acceleration;
 
     [SerializeField]
@@ -36,6 +39,12 @@ public class Speedy : Engine
     public Vector3 moveLeft;
     private ScreenManager screen;
 
+    public override float RollForce { get; set; }
+
+    private Vector3 rollVector;
+    public Vector3 rollTorque;
+
+    public bool rolling = false;
 
     // Use this for initialization
     void Start()
@@ -48,6 +57,7 @@ public class Speedy : Engine
 
         MaxSpeed = maxSpeed;
         Acceleration = acceleration;
+        RollForce = rollForce; 
 
         moveLeft = new Vector3(0, 0, 0);
         moveForward = new Vector3(0, 0, 0);
@@ -86,10 +96,50 @@ public class Speedy : Engine
 
     }
 
+
+
+    IEnumerator Roll()
+    {
+        rolling = true;
+        float currentroll = 0.0f;
+        float rollperframe = 360f / 120f;
+
+
+        while (transform.eulerAngles.y + 180 < 359)
+        {
+            currentroll += rollperframe;
+            rb.angularVelocity= new Vector3( 0, rollperframe, 0);
+            rb.AddForce(new Vector3(input.GetLeft * RollForce, 0, 0));
+
+            yield return new WaitForEndOfFrame();
+
+
+        }
+
+        rb.angularVelocity = Vector3.zero;
+        transform.eulerAngles = new Vector3(0, 0, 0);
+        rolling = false;
+
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (rb.velocity.magnitude < MaxSpeed)
+        if (input.GetRoll)
+        {
+            if (input.GetLeft != 0)
+            {
+                if (!rolling)
+                {
+                    StartCoroutine(Roll());
+                }
+                //transform.parent.transform.Rotate(Vector3.up, Mathf.Lerp(5, 360, 1.0f));
+
+            }
+        }
+
+
+        if (rb.velocity.magnitude < MaxSpeed && !input.GetRoll)
         {
 
 

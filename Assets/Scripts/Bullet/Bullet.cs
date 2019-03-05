@@ -17,6 +17,8 @@ public class Bullet : MonoBehaviour
 
     private float topScreenPos;
     private float bottomScreenPos;
+    private float rightScreenPos;
+    private float leftScreenPos;
     // public string whoShotMe;
 
 
@@ -36,6 +38,8 @@ public class Bullet : MonoBehaviour
 
         topScreenPos = 100f;
         bottomScreenPos = -100f;
+        rightScreenPos = 100f;
+        leftScreenPos = -100f;
 
 
     }
@@ -50,6 +54,11 @@ public class Bullet : MonoBehaviour
         if (transform.position.y > topScreenPos || transform.position.y < bottomScreenPos)
         {
            pool.DespwanObject(this.gameObject);
+
+        }
+        if (transform.position.x > rightScreenPos || transform.position.x < leftScreenPos)
+        {
+            pool.DespwanObject(this.gameObject);
 
         }
 

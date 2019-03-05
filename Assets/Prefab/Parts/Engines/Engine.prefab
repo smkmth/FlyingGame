@@ -44,9 +44,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
+  rollForce: 200
   acceleration: 1000
   rb: {fileID: 0}
   input: {fileID: 0}
   playerPos: 4
   moveForward: {x: 0, y: 0, z: 0}
   moveLeft: {x: 0, y: 0, z: 0}
+  rollTorque: {x: 0, y: 0, z: 0}
+  rolling: 0

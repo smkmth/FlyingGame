@@ -8,10 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ScrollLit
-  m_Shader: {fileID: 4800000, guid: 02d54b44d813e9f4eb822907cd79fdc5, type: 3}
+  m_Shader: {fileID: 4800000, guid: 70961c018a980ea4f8dab257d39f272a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap:

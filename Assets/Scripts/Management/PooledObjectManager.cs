@@ -129,6 +129,27 @@ public class PooledObjectManager : MonoBehaviour {
         }
         return null;
     }
+        public GameObject SpawnObject(string nameToLookFor, Vector3 transformPos, Quaternion facingDirection)
+    {
+        //iterate over array
+        foreach (GameObject anobject in ObjectPool)
+        {
+            //check if two game objects are the same
+            if (anobject.name == nameToLookFor)
+            {
+                //check if the object has any deactivated versions
+                if (!anobject.activeSelf)
+                {
+                    anobject.SetActive(true);
+        
+                    anobject.transform.SetPositionAndRotation(transformPos, facingDirection);
+                    
+                    return anobject;
+                }
+            }
+        }
+        return null;
+    }
 
     public void DespwanObject(GameObject objectToDespawn)
     {

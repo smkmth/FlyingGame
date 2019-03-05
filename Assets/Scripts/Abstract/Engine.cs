@@ -10,5 +10,7 @@ public abstract class Engine : MonoBehaviour
     public abstract void MoveForward(float input );
 
     public abstract void MoveLeft( float input );
+
+    public abstract float RollForce { get; set; }
 	
 }

@@ -52,6 +52,9 @@ MonoBehaviour:
   gunArray: []
   maxHealth: 100
   pool: {fileID: 0}
+  input: {fileID: 0}
+  RollTime: 1
+  RollForce: 100
 --- !u!65 &7161255043030321486
 BoxCollider:
   m_ObjectHideFlags: 0

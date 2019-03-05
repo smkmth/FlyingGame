@@ -6,15 +6,15 @@ public class MachineGun : Gun {
 
     //pool manager  - found with the gameobject called 'ObjectPooler'
     [SerializeField]
-    private PooledObjectManager pool;
+    protected PooledObjectManager pool;
 
     //input component
     [SerializeField]
-    private InputComponent input;
+    protected InputComponent input;
 
     //where the bullets come from (attached to gameobject)
     [SerializeField]
-    private Transform gunPos;
+    protected Transform gunPos;
 
     //total ammo
     [SerializeField]
@@ -61,7 +61,7 @@ public class MachineGun : Gun {
     public override GunState CurrentGunState { get; set; }
 
     // Use this for initialization
-    void Start()
+    protected void Start()
     {
         //get components 
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
@@ -109,7 +109,7 @@ public class MachineGun : Gun {
         }
     }
 
-    void FireShot()
+    protected virtual void FireShot()
     {
         currentClip -= 1;
         GameObject bulletObj = pool.SpawnObject("Bullet", gunPos.position, facingForward);

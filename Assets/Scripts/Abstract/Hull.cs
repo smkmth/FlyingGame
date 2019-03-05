@@ -14,25 +14,30 @@ public abstract class Hull : MonoBehaviour {
 
     public abstract int MaxHealth { get; set; }
 
+    public abstract bool CanBeDamaged { get; set; }
+
     public abstract void BlowUp();
 
     public abstract void SetUp();
 
     public void TakeDamage(int damageToTake)
     {
-        Health -= damageToTake;
-        if (uiManager)
+        if (CanBeDamaged)
         {
-            uiManager.UpdateHealthBar(Health);
+            Health -= damageToTake;
+            if (uiManager)
+            {
+                uiManager.UpdateHealthBar(Health);
 
-        }
-        else
-        {
-            Debug.Log("Enemy Hit, health = " + Health);
-        }
-        if (Health <= 0)
-        {
-            BlowUp();
+            }
+            else
+            {
+                Debug.Log("Enemy Hit, health = " + Health);
+            }
+            if (Health <= 0)
+            {
+                BlowUp();
+            }
         }
     }
 
