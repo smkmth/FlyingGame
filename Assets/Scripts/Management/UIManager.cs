@@ -7,15 +7,28 @@ public class UIManager : MonoBehaviour {
 
     public GameObject GameOverPanel;
     public GameObject MainMenu;
+    public GameObject hud;  
     public GamestateManager manager;
     public Slider healthBar;
+
+    private ShipBuilderUI shipbuilder;
 
 	// Use this for initialization
 	void Start () {
 
         GameOverPanel.SetActive(false);
         MainMenu.SetActive(true);
-	}
+        hud.SetActive(false);
+        shipbuilder = GetComponent<ShipBuilderUI>();
+    }
+
+    public void TurnOnShipBuilder()
+    {
+        MainMenu.SetActive(false);
+        shipbuilder.TurnOnMenu();
+
+
+    }
 	
 	public void GameOver()
     {
@@ -32,7 +45,8 @@ public class UIManager : MonoBehaviour {
     public void StartGame()
     {
         MainMenu.SetActive(false);
-
+        shipbuilder.TurnOffMenu();
+        hud.SetActive(true);
         manager.InitGame();
     }
     public void SetHealthBar(float maxhealth)
@@ -47,4 +61,6 @@ public class UIManager : MonoBehaviour {
         
         healthBar.value = val;
     }
+
+ 
 }

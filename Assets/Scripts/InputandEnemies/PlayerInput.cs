@@ -49,8 +49,11 @@ public class PlayerInput : InputComponent {
         //rolling
         if (Input.GetButtonDown("Roll"))
         {
-            GetRoll = true;
-            rollTimer = 0.0f;
+            if (!GetRoll)
+            {
+                GetRoll = true;
+                rollTimer = 0.0f;
+            }
         }
 
         if (GetRoll == true)

@@ -14,9 +14,13 @@ public class GamestateManager : MonoBehaviour {
     private GameObject Player;
 
     public UIManager uIManager;
+    public ScoreManager scoreManager;
     private ScreenManager screen;
     private PooledObjectManager pool;
-    
+
+    [SerializeField]
+    public ShipParts parts;
+
     [Header("Object Pooler Settings")]
     //how many objects we want to allocate upfront
     [SerializeField]
@@ -38,10 +42,15 @@ public class GamestateManager : MonoBehaviour {
     [Header("Ship Parts")]
 
     public GameObject ShipBase;
+    [HideInInspector]
     public GameObject gunPrefab;
+    [HideInInspector]
     public GameObject enginePrefab;
+    [HideInInspector]
     public GameObject hullPrefab;
+    [HideInInspector]
     public GameObject enemyHullPrefab;
+    [HideInInspector]
     public GameObject enemyEnginePrefab;
 
 
@@ -84,18 +93,19 @@ public class GamestateManager : MonoBehaviour {
 
     public void InitGame()
     {
-        InitScene();
+        InitScene(parts.Hulls[0].gameObject, enginePrefab, gunPrefab);
         StartGame();
 
     }
 
-    private void InitScene()
+    private void InitScene(GameObject playerhull, GameObject playerengine, GameObject playergun)
     {
         pool.TearDownObjects();
         //setup player
         Player = pool.InitGameObject(ShipBase, PlayersToPool, PlayerName);
-        ShipBuilder.CreateShip(Player, hullPrefab, enginePrefab, gunPrefab, InputComponentType.Player);
-        Player.layer = LayerMask.NameToLayer("Player");
+        ShipBuilder.CreateShip(Player, playerhull, playerengine, playergun, InputComponentType.Player);
+        ShipBuilder.SetLayerRecursively(Player, LayerMask.NameToLayer("Player"));
+
         //set up bullets
         pool.Init(BulletPrefab, BulletsToPool, BulletName);
         //set up enemies
@@ -116,7 +126,7 @@ public class GamestateManager : MonoBehaviour {
         EnemyList = pool.InitList(ShipBase, EnemiesToPool, EnemyName);
         foreach (GameObject aenemey in EnemyList)
         {
-            ShipBuilder.CreateShip(aenemey, enemyHullPrefab, enemyEnginePrefab, gunPrefab, InputComponentType.LeftToRightAi);
+            ShipBuilder.CreateShip(aenemey, parts.Hulls[0].gameObject, parts.Engines[1].gameObject, parts.Guns[0].gameObject, InputComponentType.LeftToRightAi);
             ShipBuilder.SetLayerRecursively(aenemey, (LayerMask.NameToLayer("Goon")));
         }
     }
@@ -150,6 +160,7 @@ public class GamestateManager : MonoBehaviour {
                 timer = 0;
             }
         }
+
     }
 
     public void EnemySpawn(int amountOfEnemies, float lowXRange, float highXRange, float lowYRange, float highYRange)
@@ -176,6 +187,7 @@ public class GamestateManager : MonoBehaviour {
     public void Restart()
     {
         pool.DespawnAllObjects();
+        scoreManager.Restart();
         StartGame();
     }
  

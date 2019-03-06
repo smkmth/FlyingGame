@@ -25,6 +25,7 @@ public abstract class Hull : MonoBehaviour {
         if (CanBeDamaged)
         {
             Health -= damageToTake;
+            Debug.Log(this.name + " hit, now they have " + Health + " health");
             if (uiManager)
             {
                 uiManager.UpdateHealthBar(Health);

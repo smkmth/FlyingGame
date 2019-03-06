@@ -7,11 +7,25 @@ public enum InputComponentType
     LeftToRightAi
 
 }
-public static class ShipBuilder
+public enum GunParts
 {
+    Machinegun,
+    Shotgun
+
+}
+public enum EngineParts
+{
+    Engine,
+    SlowerEngine
+
+}
+public static class ShipBuilder 
+{
+   
+
     public static GameObject CreateShip(GameObject ship, GameObject body, GameObject engine, GameObject gun, InputComponentType input)
     {
-
+ 
         GameObject.Instantiate(body, ship.transform);
         GameObject.Instantiate(gun, ship.transform);
         GameObject.Instantiate(engine, ship.transform);
@@ -27,14 +41,11 @@ public static class ShipBuilder
             case InputComponentType.LeftToRightAi:
                 {
                     ship.AddComponent<LeftToRightAi>();
-
                     break;
 
                 }
         }
 
-        
-  
         return ship; 
     }
 
@@ -46,6 +57,7 @@ public static class ShipBuilder
             trans.gameObject.layer = layerNumber;
         }
     }
+
 
 
 

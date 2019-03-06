@@ -25,7 +25,8 @@ public class DoubleGunShip : Hull
 
     public PooledObjectManager pool;
     public InputComponent input;
-    private Rigidbody rb; 
+    private Rigidbody rb;
+    private ScoreManager score; 
 
     private float rollTimer;
     private bool rolling;
@@ -42,6 +43,7 @@ public class DoubleGunShip : Hull
         CanBeDamaged = true;
         
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
+        score = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
         input = gameObject.GetComponentInParent<InputComponent>();
         rb = gameObject.GetComponentInParent<Rigidbody>();
 
@@ -51,6 +53,12 @@ public class DoubleGunShip : Hull
 
     public override void BlowUp()
     {
+        if (transform.parent.name == "Enemy")
+        {
+            score.AddPoint(10);
+
+        }
+
         pool.DespwanObject(gameObject.transform.parent.gameObject);
     }
 
@@ -67,8 +75,6 @@ public class DoubleGunShip : Hull
 
     private void Update()
     {
-
-
         if (input.GetRoll)
         {
             CanBeDamaged = false;
@@ -76,12 +82,8 @@ public class DoubleGunShip : Hull
         else
         {
             CanBeDamaged = true;
-
         }
-
-
-
-    }
+   }
 
 
 

@@ -148,7 +148,7 @@ MonoBehaviour:
   bulletDamage: 10
   facingForward: 0
   isPlayer: 0
-  ExtremeRight: {x: 0, y: 0, z: -90}
-  ExtremeLeft: {x: 0, y: 0, z: 90}
+  ExtremeRight: {x: 0, y: 0, z: -20}
+  ExtremeLeft: {x: 0, y: 0, z: 20}
   amountOfBulletsToSpread: 10
   AimPos: {x: 0, y: 0, z: 0}

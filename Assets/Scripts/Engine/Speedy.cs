@@ -100,12 +100,14 @@ public class Speedy : Engine
     {
         rolling = true;
         float currentroll = 0.0f;
-        float rollperframe = 360f / 120f;
-
-        while (transform.eulerAngles.y + 180 < 359)
+        float rollperframe = 360f / 60.0f;
+       
+        while (transform.eulerAngles.y + 180 < 360)
         {
             currentroll += rollperframe;
-            rb.angularVelocity= new Vector3( 0, rollperframe, 0);
+           
+            rb.angularVelocity = new Vector3(0, rollperframe, 0);
+           
             rb.AddForce(new Vector3(input.GetLeft * RollForce, 0, 0));
 
             yield return new WaitForEndOfFrame();
@@ -118,6 +120,7 @@ public class Speedy : Engine
     // Update is called once per frame
     void FixedUpdate()
     {
+        Debug.Log(rolling);
         if (input.GetRoll)
         {
             if (input.GetLeft != 0)
@@ -126,7 +129,6 @@ public class Speedy : Engine
                 {
                     StartCoroutine(Roll());
                 }
-                //transform.parent.transform.Rotate(Vector3.up, Mathf.Lerp(5, 360, 1.0f));
             }
         }
 
