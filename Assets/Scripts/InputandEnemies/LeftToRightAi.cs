@@ -15,19 +15,14 @@ public class LeftToRightAi : InputComponent {
     private ScreenManager screen;
 
 
-    [Range(0.1f,1f)]
-    public float HowFarX;
-    [Range(0.1f, 1f)]
-    public float HowFarY;
+ 
+    private float HowFarX;
+    private float HowFarY;
 
-    [Range(-1f, 1f)]
-    public float RandomXHigh;
-    [Range(-1f, 1f)]
-    public float RandomXLow;
-    [Range(-1f, 1f)]
-    public float RandomYHigh;
-    [Range(-1f, 1f)]
-    public float RandomYLow;
+    private float RandomXHigh;
+    private float RandomXLow;
+    private float RandomYHigh;
+    private float RandomYLow;
 
 
 
@@ -40,8 +35,19 @@ public class LeftToRightAi : InputComponent {
     void Start ()
     {
         state = AIState.MovingToInitPos;
-        screen = GameObject.Find("ScreenManager").GetComponent<ScreenManager>();
+        screen = GameObject.Find("ScreenManager").GetComponent<ScreenManager>();        
 
+    }
+
+    public void Init(float howfarx, float howfary, float randomxhigh, float randomxlow, float randomyhigh, float randomylow )
+    {
+        Debug.Log("Init");
+        HowFarX = howfarx;
+        HowFarY = howfary;
+        RandomXHigh = randomxhigh;
+        RandomXLow = randomxlow;
+        RandomYHigh = randomyhigh;
+        RandomYLow = randomylow;
         HowFarX += Random.Range(RandomXLow, RandomXHigh);
         if (HowFarX > 1)
         {
@@ -56,10 +62,11 @@ public class LeftToRightAi : InputComponent {
         {
             HowFarY = 1;
         }
-        if (HowFarY < .5f)
+        if (HowFarY < .3f)
         {
-            HowFarY = .5f;
+            HowFarY = .3f;
         }
+        Debug.Log(" how far x = " + HowFarX + "how far y = " + HowFarY);
 
     }
 	

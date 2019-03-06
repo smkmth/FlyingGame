@@ -31,11 +31,11 @@ public class GamestateManager : MonoBehaviour {
     private int PlayersToPool;
 
     [SerializeField]
-    private string PlayerName;
+    public string PlayerName;
     [SerializeField]
-    private string EnemyName;
+    public string EnemyName;
     [SerializeField]
-    private string BulletName;
+    public string BulletName;
 
     public GameObject       BulletPrefab;
 
@@ -56,28 +56,17 @@ public class GamestateManager : MonoBehaviour {
     public List<GameObject> playerGunList;
 
 
-
-    [Header("Enemy Spawner Settings")]
-    [SerializeField]
-    private int AmountOfEnemies;
-    [SerializeField]
-    private float LowXRange;
-    [SerializeField]
-    private float HighXRange;
-    [SerializeField]
-    private float LowYRange;
-    [SerializeField]
-    private float HighYRange;
-    [SerializeField]
-    public float WaveTimer;
     private float timer;
+
+    public float WaveTimer;
+
+    public EnemyWaveSpawner wavespawner;
 
     public List<GameObject> EnemeyGuns;
 
     [Header ("Start Positions")]
     public Vector3 PlayerStartPos;
 
-    private Vector3 EnemyStartPos;
 
     public List<GameObject> EnemyList;
 
@@ -88,6 +77,7 @@ public class GamestateManager : MonoBehaviour {
 
         screen = GameObject.Find("ScreenManager").GetComponent<ScreenManager>();
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
+        wavespawner = GetComponent<EnemyWaveSpawner>();
 
         CurrentGameState = GameState.SetUp;
         
@@ -163,27 +153,14 @@ public class GamestateManager : MonoBehaviour {
             }
             if (timer > WaveTimer)
             {
-                EnemySpawn(AmountOfEnemies, LowXRange, HighXRange, LowYRange, HighYRange);
+                wavespawner.EnemySpawn();
                 timer = 0;
             }
         }
 
     }
 
-    public void EnemySpawn(int amountOfEnemies, float lowXRange, float highXRange, float lowYRange, float highYRange)
-    { 
-        for (int i = 0; i < amountOfEnemies; i++)
-        {
-            EnemyStartPos.x = Random.Range(lowXRange, highXRange);
-            EnemyStartPos.y = Random.Range(lowYRange, highYRange);
-            GameObject enemy = pool.SpawnObject(EnemyName, EnemyStartPos, false);
-            if (enemy)
-            {
-                enemy.layer = 11;
-                EnemyList.Add(enemy);
-            }
-        }
-    }
+
 
     void GameOver()
     {
