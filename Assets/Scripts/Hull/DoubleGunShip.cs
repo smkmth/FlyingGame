@@ -40,7 +40,6 @@ public class DoubleGunShip : Hull
         GunList = gunArray;
         MainEngine = mainEngine;
         CanBeDamaged = true;
-        Debug.Log(name + " spawned ");
         
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
         input = gameObject.GetComponentInParent<InputComponent>();
@@ -52,7 +51,6 @@ public class DoubleGunShip : Hull
 
     public override void BlowUp()
     {
-        Debug.Log("Exploaded");
         pool.DespwanObject(gameObject.transform.parent.gameObject);
     }
 
@@ -63,7 +61,7 @@ public class DoubleGunShip : Hull
         Health = MaxHealth;
         uiManager = GameObject.Find("UI").GetComponent<UIManager>();
         uiManager.SetHealthBar(MaxHealth);
-        Debug.Log("Set health to " + MaxHealth);
+        
 
     }
 

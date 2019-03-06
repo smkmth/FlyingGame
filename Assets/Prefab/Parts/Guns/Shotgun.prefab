@@ -140,8 +140,8 @@ MonoBehaviour:
   gunPos: {fileID: 8897224854665711}
   fullAmmo: 0
   currentAmmo: 0
-  fullClip: 10
-  currentClip: 10
+  fullClip: 40
+  currentClip: 40
   fireRate: 0.1
   reloadTime: 1
   bulletSpeed: 100
@@ -151,3 +151,4 @@ MonoBehaviour:
   ExtremeRight: {x: 0, y: 0, z: -90}
   ExtremeLeft: {x: 0, y: 0, z: 90}
   amountOfBulletsToSpread: 10
+  AimPos: {x: 0, y: 0, z: 0}

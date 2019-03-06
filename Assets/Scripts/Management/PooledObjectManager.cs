@@ -123,13 +123,15 @@ public class PooledObjectManager : MonoBehaviour {
                         anobject.transform.SetPositionAndRotation(transformPos, Quaternion.AngleAxis(180, Vector3.forward));
 
                     }
+                    //Debug.Log(anobject.name + " spawned " + transformPos);
                     return anobject;
                 }
             }
         }
         return null;
     }
-        public GameObject SpawnObject(string nameToLookFor, Vector3 transformPos, Quaternion facingDirection)
+
+    public GameObject SpawnObject(string nameToLookFor, Vector3 transformPos, Quaternion facingDirection)
     {
         //iterate over array
         foreach (GameObject anobject in ObjectPool)
@@ -144,6 +146,9 @@ public class PooledObjectManager : MonoBehaviour {
         
                     anobject.transform.SetPositionAndRotation(transformPos, facingDirection);
                     
+                    //Debug.Log(anobject.name + " spawned " + transformPos + facingDirection);
+
+
                     return anobject;
                 }
             }
@@ -164,6 +169,8 @@ public class PooledObjectManager : MonoBehaviour {
                 {
                     anobject.SetActive(false);
                     anobject.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+                    //Debug.Log(anobject.name + " despawned");
+
                 }
             }
         }

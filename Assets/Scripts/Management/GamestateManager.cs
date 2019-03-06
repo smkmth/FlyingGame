@@ -104,12 +104,10 @@ public class GamestateManager : MonoBehaviour {
 
     public void StartGame()
     {
-
         Player = pool.SpawnObject(PlayerName, PlayerStartPos, true);
         CurrentGameState = GameState.Playing;
         Player.GetComponentInChildren<Hull>().SetUp();
         timer = 0;
-
     }
 
 
@@ -132,10 +130,8 @@ public class GamestateManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         timer += Time.deltaTime;
-
         if (CurrentGameState == GameState.Playing)
         {
-
             if (Player)
             {
                 if (Player.activeSelf != true)
@@ -157,8 +153,7 @@ public class GamestateManager : MonoBehaviour {
     }
 
     public void EnemySpawn(int amountOfEnemies, float lowXRange, float highXRange, float lowYRange, float highYRange)
-    {
-        
+    { 
         for (int i = 0; i < amountOfEnemies; i++)
         {
             EnemyStartPos.x = Random.Range(lowXRange, highXRange);
@@ -167,7 +162,6 @@ public class GamestateManager : MonoBehaviour {
             if (enemy)
             {
                 enemy.layer = 11;
-
                 EnemyList.Add(enemy);
             }
         }

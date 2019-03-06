@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour {
     }
     public void SetHealthBar(float maxhealth)
     {
-        Debug.Log("Health set to " + maxhealth);
+       // Debug.Log("Health set to " + maxhealth);
         healthBar.maxValue = maxhealth;
         healthBar.value = maxhealth;
     }

@@ -81,8 +81,7 @@ public class Speedy : Engine
     }
 
     public override void MoveLeft(float input)
-    {     
-       
+    {  
         if (playerPos == PlayerPos.TooRight)
         {
             input = -1;
@@ -93,7 +92,6 @@ public class Speedy : Engine
         }
         moveLeft.x = input;
         rb.AddForce(moveLeft * Acceleration);
-
     }
 
 
@@ -104,7 +102,6 @@ public class Speedy : Engine
         float currentroll = 0.0f;
         float rollperframe = 360f / 120f;
 
-
         while (transform.eulerAngles.y + 180 < 359)
         {
             currentroll += rollperframe;
@@ -112,14 +109,10 @@ public class Speedy : Engine
             rb.AddForce(new Vector3(input.GetLeft * RollForce, 0, 0));
 
             yield return new WaitForEndOfFrame();
-
-
         }
-
         rb.angularVelocity = Vector3.zero;
         transform.eulerAngles = new Vector3(0, 0, 0);
         rolling = false;
-
     }
 
     // Update is called once per frame
@@ -134,26 +127,19 @@ public class Speedy : Engine
                     StartCoroutine(Roll());
                 }
                 //transform.parent.transform.Rotate(Vector3.up, Mathf.Lerp(5, 360, 1.0f));
-
             }
         }
 
-
         if (rb.velocity.magnitude < MaxSpeed && !input.GetRoll)
         {
-
-
             MoveLeft(input.GetLeft);
             MoveForward(input.GetForward);
         }
        
 
-
-
         if ((screen.upExtend.y - transform.position.y) < 0)
         {
             playerPos = PlayerPos.TooHigh;
-
         }
         else if ((screen.downExtend.y - transform.position.y) > 0)
         {
@@ -170,7 +156,6 @@ public class Speedy : Engine
         else
         {
             playerPos = PlayerPos.Fine;
-
         }
 
     }

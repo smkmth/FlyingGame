@@ -35,8 +35,6 @@ public class PlayerInput : InputComponent {
         GetForward = Input.GetAxis("Vertical");
         GetLeft = Input.GetAxis("Horizontal");
 
-
-
         //firing
         if (Input.GetButton("Fire1"))
         {
@@ -53,7 +51,6 @@ public class PlayerInput : InputComponent {
         {
             GetRoll = true;
             rollTimer = 0.0f;
-            Debug.Log("Roll");
         }
 
         if (GetRoll == true)

@@ -16,9 +16,17 @@ public class Shotgun : MachineGun
 
     protected override void FireShot()
     {
-        for (int i = 0; i < amountOfBulletsToSpread; i++)
+        for (int i = 0; i <= amountOfBulletsToSpread; i++)
         {
-            currentClip -= 1;
+            float lerpval = (float)i / 10;
+            AimPos = Vector3.Lerp( ExtremeRight, ExtremeLeft, lerpval);
+    
+    
+            AimPos -= transform.parent.localRotation.eulerAngles;
+            Debug.Log(transform.parent.localRotation.eulerAngles + AimPos);
+
+
+            //currentClip -= 1;
             GameObject bulletObj = pool.SpawnObject("Bullet", gunPos.position, Quaternion.Euler(AimPos));
 
 
