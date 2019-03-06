@@ -16,7 +16,11 @@ public abstract class Hull : MonoBehaviour {
 
     public abstract bool CanBeDamaged { get; set; }
 
+    public abstract List<Transform> GunSlots { get; set; }
+
     public abstract void BlowUp();
+
+    public abstract void Init();
 
     public abstract void SetUp();
 

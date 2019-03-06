@@ -120,7 +120,6 @@ public class Speedy : Engine
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(rolling);
         if (input.GetRoll)
         {
             if (input.GetLeft != 0)

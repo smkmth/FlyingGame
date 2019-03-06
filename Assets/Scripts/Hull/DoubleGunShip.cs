@@ -23,9 +23,15 @@ public class DoubleGunShip : Hull
 
     public override UIManager uiManager { get; set; }
 
+    [SerializeField]
+    private List<Transform> gunslots;
+    public override List<Transform> GunSlots { get; set; }
+
     public PooledObjectManager pool;
     public InputComponent input;
-    private Rigidbody rb;
+    public Rigidbody rb;
+
+
     private ScoreManager score; 
 
     private float rollTimer;
@@ -41,6 +47,7 @@ public class DoubleGunShip : Hull
         GunList = gunArray;
         MainEngine = mainEngine;
         CanBeDamaged = true;
+        GunSlots = gunslots;
         
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
         score = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
@@ -51,6 +58,16 @@ public class DoubleGunShip : Hull
 
     }
 
+    public override void Init()
+    {
+        MaxHealth = maxHealth;
+        Health = MaxHealth;
+        GunList = gunArray;
+        MainEngine = mainEngine;
+        CanBeDamaged = true;
+        GunSlots = gunslots;
+
+    }
     public override void BlowUp()
     {
         if (transform.parent.name == "Enemy")

@@ -8,16 +8,23 @@ public class ShipBuilderUI : MonoBehaviour
 {
     public GameObject ShipBuildingMenu;
     public Dropdown gundropdown;
+    public Dropdown gun2dropdown;
     public Dropdown enginedropdown;
     public GamestateManager manager;
     [SerializeField]
     public ShipParts parts;
 
+    public List<GameObject> selectedGunList;
+
     public void Start()
     {
+        ShipBuildingMenu.SetActive(false);
+
         gundropdown.ClearOptions();
         gundropdown.AddOptions(System.Enum.GetNames(typeof(GunParts)).ToList());
-        ShipBuildingMenu.SetActive(false);
+
+        gun2dropdown.ClearOptions();
+        gun2dropdown.AddOptions(System.Enum.GetNames(typeof(GunParts)).ToList());
 
         enginedropdown.ClearOptions();
         enginedropdown.AddOptions(System.Enum.GetNames(typeof(EngineParts)).ToList());
@@ -30,13 +37,20 @@ public class ShipBuilderUI : MonoBehaviour
     public void TurnOffMenu()
     {
         ShipBuildingMenu.SetActive(false);
-        SelectGun();
+        selectedGunList.Clear();
+        CreateGunList(gun2dropdown);
+        CreateGunList(gundropdown);
         SelectEngine();
+        manager.playerGunList = selectedGunList;
+        foreach (GameObject gun in selectedGunList)
+        {
+            Debug.Log(gun.name);
+        }
     }
 
-    public void SelectGun()
+    public void CreateGunList(Dropdown dropdown)
     {
-        int selectionIndex = gundropdown.value;
+        int selectionIndex = dropdown.value;
 
         switch (selectionIndex)
         {
@@ -46,7 +60,7 @@ public class ShipBuilderUI : MonoBehaviour
                 {
                     if (gun.name == "MachineGun")
                     {
-                        manager.gunPrefab = gun.gameObject;
+                        selectedGunList.Add(gun.gameObject);
                     }
 
                 }
@@ -56,7 +70,7 @@ public class ShipBuilderUI : MonoBehaviour
                 {
                     if (gun.name == "Shotgun")
                     {
-                        manager.gunPrefab = gun.gameObject;
+                        selectedGunList.Add(gun.gameObject);
                     }
 
                 }

@@ -52,7 +52,8 @@ public class GamestateManager : MonoBehaviour {
     public GameObject enemyHullPrefab;
     [HideInInspector]
     public GameObject enemyEnginePrefab;
-
+    [HideInInspector]
+    public List<GameObject> playerGunList;
 
 
 
@@ -70,6 +71,8 @@ public class GamestateManager : MonoBehaviour {
     [SerializeField]
     public float WaveTimer;
     private float timer;
+
+    public List<GameObject> EnemeyGuns;
 
     [Header ("Start Positions")]
     public Vector3 PlayerStartPos;
@@ -93,17 +96,21 @@ public class GamestateManager : MonoBehaviour {
 
     public void InitGame()
     {
-        InitScene(parts.Hulls[0].gameObject, enginePrefab, gunPrefab);
+        foreach (GameObject gun in playerGunList)
+        {
+            Debug.Log(gun.name);
+        }
+        InitScene(parts.Hulls[0].gameObject, enginePrefab, playerGunList);
         StartGame();
 
     }
 
-    private void InitScene(GameObject playerhull, GameObject playerengine, GameObject playergun)
+    private void InitScene(GameObject playerhull, GameObject playerengine, List<GameObject> playerguns)
     {
         pool.TearDownObjects();
         //setup player
         Player = pool.InitGameObject(ShipBase, PlayersToPool, PlayerName);
-        ShipBuilder.CreateShip(Player, playerhull, playerengine, playergun, InputComponentType.Player);
+        ShipBuilder.CreateShip(Player, playerhull, playerengine, playerguns, InputComponentType.Player);
         ShipBuilder.SetLayerRecursively(Player, LayerMask.NameToLayer("Player"));
 
         //set up bullets
@@ -126,7 +133,7 @@ public class GamestateManager : MonoBehaviour {
         EnemyList = pool.InitList(ShipBase, EnemiesToPool, EnemyName);
         foreach (GameObject aenemey in EnemyList)
         {
-            ShipBuilder.CreateShip(aenemey, parts.Hulls[0].gameObject, parts.Engines[1].gameObject, parts.Guns[0].gameObject, InputComponentType.LeftToRightAi);
+            ShipBuilder.CreateShip(aenemey, parts.Hulls[0].gameObject, parts.Engines[1].gameObject, EnemeyGuns, InputComponentType.LeftToRightAi);
             ShipBuilder.SetLayerRecursively(aenemey, (LayerMask.NameToLayer("Goon")));
         }
     }
