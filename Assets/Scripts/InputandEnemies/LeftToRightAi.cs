@@ -41,13 +41,14 @@ public class LeftToRightAi : InputComponent {
 
     public void Init(float howfarx, float howfary, float randomxhigh, float randomxlow, float randomyhigh, float randomylow )
     {
-        Debug.Log("Init");
+        //Debug.Log("Init");
         HowFarX = howfarx;
         HowFarY = howfary;
         RandomXHigh = randomxhigh;
         RandomXLow = randomxlow;
         RandomYHigh = randomyhigh;
         RandomYLow = randomylow;
+        /*
         HowFarX += Random.Range(RandomXLow, RandomXHigh);
         if (HowFarX > 1)
         {
@@ -66,14 +67,18 @@ public class LeftToRightAi : InputComponent {
         {
             HowFarY = .3f;
         }
-        Debug.Log(" how far x = " + HowFarX + "how far y = " + HowFarY);
+       */
+        
+        //Debug.Log(" how far x = " + HowFarX + "how far y = " + HowFarY);
 
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (transform.position.y < (screen.upExtend.y * HowFarY))
+
+        Debug.Log(transform.position.y / screen.downExtend.y);
+        if (transform.position.y < (screen.downExtend.y * HowFarY))
         {
             goingDown = false;
             state = AIState.InPos;
