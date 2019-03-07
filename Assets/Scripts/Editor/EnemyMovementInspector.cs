@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 [CustomEditor(typeof(BezierEnemy))]
@@ -9,6 +10,8 @@ public class EnemyMovementInspector : Editor
     private void OnSceneViewGUI(SceneView sv)
     {
         BezierEnemy em = target as BezierEnemy;
+        
+
 
         em.StartPoint = Handles.PositionHandle(em.StartPoint, Quaternion.identity);
         em.endPoint = Handles.PositionHandle(em.endPoint, Quaternion.identity);
@@ -16,6 +19,9 @@ public class EnemyMovementInspector : Editor
         em.endTangent = Handles.PositionHandle(em.endTangent, Quaternion.identity);
 
         Handles.DrawBezier(em.StartPoint, em.endPoint, em.startTangent, em.endTangent, Color.red, null, 2f);
+
+        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+        //EditorUtility.SetDirty(em);
 
     }
 

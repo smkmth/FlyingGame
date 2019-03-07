@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainEngine: {fileID: 0}
   gunArray: []
-  maxHealth: 100
+  maxHealth: 1000
   gunslots:
   - {fileID: 2014672162783511264}
   - {fileID: 4665420749367377133}

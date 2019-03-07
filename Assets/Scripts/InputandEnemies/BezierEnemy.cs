@@ -16,12 +16,24 @@ public class BezierEnemy : InputComponent
     public Vector3 startTangent = Vector3.zero;
     public Vector3 endTangent = Vector3.zero;
 
+    float BezierTimer = 0.0f;
+    Vector3 curvepos;
 
-    public void Start()
-    {
-    }
+
 
     public void Update()
     {
+        BezierTimer += Time.deltaTime * 0.5f;
+        if (BezierTimer > 1)
+        {
+            BezierTimer = 0;
+        }
+
+        curvepos = ((1 - BezierTimer )*(1 - BezierTimer) * StartPoint) + (2 * BezierTimer * (1 - BezierTimer) * startTangent) + (2 * BezierTimer * (1 - BezierTimer) * endTangent) +(BezierTimer * BezierTimer) * endPoint;
+        curvepos.z = 0.0f;
+
+        transform.position = curvepos;
+
     }
+
 }
