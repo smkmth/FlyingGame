@@ -29,7 +29,7 @@ public class BezierEnemy : InputComponent
             BezierTimer = 0;
         }
 
-        curvepos = ((1 - BezierTimer )*(1 - BezierTimer) * StartPoint) + (2 * BezierTimer * (1 - BezierTimer) * startTangent) + (2 * BezierTimer * (1 - BezierTimer) * endTangent) +(BezierTimer * BezierTimer) * endPoint;
+        curvepos = ((1 - BezierTimer )* (1 - BezierTimer) * StartPoint) + (2 * BezierTimer * (1 - BezierTimer) * startTangent) + (2 * BezierTimer * (1 - BezierTimer) * endTangent) +(BezierTimer * BezierTimer) * endPoint;
         curvepos.z = 0.0f;
 
         transform.position = curvepos;
