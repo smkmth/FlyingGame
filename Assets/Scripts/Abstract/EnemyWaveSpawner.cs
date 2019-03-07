@@ -24,7 +24,7 @@ public class EnemyWaveSpawner : MonoBehaviour
     [Range(0.1f, 1f)]
     private float HowFarX;
     [SerializeField]
-    [Range(0.1f, 1f)]
+    [Range(-1f, 1f)]
     private float HowFarY;
 
 

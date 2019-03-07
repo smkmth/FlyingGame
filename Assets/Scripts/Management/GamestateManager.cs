@@ -42,6 +42,7 @@ public class GamestateManager : MonoBehaviour {
     [Header("Ship Parts")]
 
     public GameObject ShipBase;
+    public GameObject AIShipBase;
     [HideInInspector]
     public GameObject gunPrefab;
     [HideInInspector]
@@ -120,7 +121,7 @@ public class GamestateManager : MonoBehaviour {
 
     public void InitEnemies()
     {
-        EnemyList = pool.InitList(ShipBase, EnemiesToPool, EnemyName);
+        EnemyList = pool.InitList(AIShipBase, EnemiesToPool, EnemyName);
         foreach (GameObject aenemey in EnemyList)
         {
             ShipBuilder.CreateShip(aenemey, parts.Hulls[0].gameObject, parts.Engines[1].gameObject, EnemeyGuns, InputComponentType.LeftToRightAi);
