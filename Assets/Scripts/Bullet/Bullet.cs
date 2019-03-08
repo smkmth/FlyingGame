@@ -36,10 +36,10 @@ public class Bullet : MonoBehaviour
         // bottomScreenPos = screen.downExtend.y;
 
 
-        topScreenPos = 100f;
-        bottomScreenPos = -100f;
-        rightScreenPos = 100f;
-        leftScreenPos = -100f;
+        topScreenPos = screen.upExtend.y;
+        bottomScreenPos = screen.downExtend.y;
+        rightScreenPos = screen.rightExtend.x;
+        leftScreenPos = screen.leftExtend.x;
 
 
     }

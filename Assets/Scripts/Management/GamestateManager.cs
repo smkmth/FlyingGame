@@ -18,15 +18,11 @@ public class GamestateManager : MonoBehaviour {
     private ScreenManager screen;
     private PooledObjectManager pool;
 
-    [SerializeField]
-    public ShipParts parts;
 
     [Header("Object Pooler Settings")]
     //how many objects we want to allocate upfront
     [SerializeField]
     private int BulletsToPool;
-    [SerializeField]
-    private int EnemiesToPool;
     [SerializeField]
     private int PlayersToPool;
 
@@ -37,14 +33,14 @@ public class GamestateManager : MonoBehaviour {
     [SerializeField]
     public string BulletName;
 
-    public GameObject       BulletPrefab;
+    public GameObject BulletPrefab;
 
     [Header("Ship Parts")]
 
-    public ShipParts enemyShip; 
-
+    //set this to be a ship base prefab. 
     public GameObject ShipBase;
-    public GameObject AIShipBase;
+    
+    //these guys are set by the ship builder ui
     [HideInInspector]
     public GameObject gunPrefab;
     [HideInInspector]
@@ -52,28 +48,15 @@ public class GamestateManager : MonoBehaviour {
     [HideInInspector]
     public GameObject hullPrefab;
     [HideInInspector]
-    public GameObject enemyHullPrefab;
-    [HideInInspector]
-    public GameObject enemyEnginePrefab;
-    [HideInInspector]
     public List<GameObject> playerGunList;
 
 
-    private float timer;
-
-    public float WaveTimer;
-
-    public EnemyWaveSpawner wavespawner;
-
-    public List<GameObject> EnemeyGuns;
-
-    [Header ("Start Positions")]
+    [Header ("Start Position")]
     public Vector3 PlayerStartPos;
 
-
-    public List<GameObject> EnemyList;
-
     public GameState CurrentGameState { get; set; }
+
+    private EnemyWaveSpawner wavespawner;
 
     private void Awake()
     {
@@ -93,7 +76,7 @@ public class GamestateManager : MonoBehaviour {
         {
             Debug.Log(gun.name);
         }
-        InitScene(parts.Hulls[0].gameObject, enginePrefab, playerGunList);
+        InitScene(hullPrefab, enginePrefab, playerGunList);
         StartGame();
 
     }
@@ -109,7 +92,7 @@ public class GamestateManager : MonoBehaviour {
         //set up bullets
         pool.Init(BulletPrefab, BulletsToPool, BulletName);
         //set up enemies
-        InitEnemies();
+        wavespawner.InitEnemies();
     }
 
     public void StartGame()
@@ -117,19 +100,11 @@ public class GamestateManager : MonoBehaviour {
         Player = pool.SpawnObject(PlayerName, PlayerStartPos, true);
         CurrentGameState = GameState.Playing;
         Player.GetComponentInChildren<Hull>().SetUp();
-        timer = 0;
+        wavespawner.timer = 0.0f;
     }
 
 
-    public void InitEnemies()
-    {
-        EnemyList = pool.InitList(AIShipBase, EnemiesToPool, EnemyName);
-        foreach (GameObject aenemey in EnemyList)
-        {
-            ShipBuilder.CreateShip(aenemey, enemyShip, InputComponentType.BeizerEnemy);
-            ShipBuilder.SetLayerRecursively(aenemey, (LayerMask.NameToLayer("Goon")));
-        }
-    }
+  
 
     public GameObject GetPlayer()
     {
@@ -139,7 +114,7 @@ public class GamestateManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        timer += Time.deltaTime;
+
         if (CurrentGameState == GameState.Playing)
         {
             if (Player)
@@ -154,16 +129,8 @@ public class GamestateManager : MonoBehaviour {
                     CurrentGameState = GameState.Playing;
                 }
             }
-            if (timer > WaveTimer)
-            {
-                wavespawner.EnemySpawn();
-                timer = 0;
-            }
         }
-
     }
-
-
 
     void GameOver()
     {

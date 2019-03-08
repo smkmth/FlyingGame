@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 7514092027097110888, guid: b572fd4ed411e3040a4cc3eb8b00092d,
         type: 3}
       propertyPath: m_Name
-      value: ReverseCurveyPath
+      value: ReverseCurveyPath Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8826112696247022276, guid: b572fd4ed411e3040a4cc3eb8b00092d,
         type: 3}
@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 2198681805752314528, guid: b572fd4ed411e3040a4cc3eb8b00092d,
         type: 3}
       propertyPath: startTangent.x
-      value: 100.5
+      value: 150.8
       objectReference: {fileID: 0}
     - target: {fileID: 2198681805752314528, guid: b572fd4ed411e3040a4cc3eb8b00092d,
         type: 3}
@@ -85,12 +85,17 @@ PrefabInstance:
     - target: {fileID: 2198681805752314528, guid: b572fd4ed411e3040a4cc3eb8b00092d,
         type: 3}
       propertyPath: endPoint.y
-      value: -47.69
+      value: -48.1
       objectReference: {fileID: 0}
     - target: {fileID: 2198681805752314528, guid: b572fd4ed411e3040a4cc3eb8b00092d,
         type: 3}
       propertyPath: endTangent.x
       value: -100.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2198681805752314528, guid: b572fd4ed411e3040a4cc3eb8b00092d,
+        type: 3}
+      propertyPath: startTangent.y
+      value: -31.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b572fd4ed411e3040a4cc3eb8b00092d, type: 3}

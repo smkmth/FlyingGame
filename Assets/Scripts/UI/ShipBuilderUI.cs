@@ -119,21 +119,21 @@ public class ShipBuilderUI : MonoBehaviour
         {
             case (int)HullParts.StrongShip:
                 //case 1:
-                foreach (Engine engine in parts.Engines)
+                foreach (Hull hull in parts.Hulls)
                 {
-                    if (engine.name == "Engine")
+                    if (hull.name == "StrongShip")
                     {
-                        manager.enginePrefab = engine.gameObject;
+                        manager.hullPrefab = hull.gameObject;
                     }
 
                 }
                 break;
             case (int)HullParts.WeakShip:
-                foreach (Engine engine in parts.Engines)
+                foreach (Hull hull in parts.Hulls)
                 {
-                    if (engine.name == "SlowerEngine")
+                    if (hull.name == "WeakShip")
                     {
-                        manager.enginePrefab = engine.gameObject;
+                        manager.hullPrefab = hull.gameObject;
                     }
 
                 }

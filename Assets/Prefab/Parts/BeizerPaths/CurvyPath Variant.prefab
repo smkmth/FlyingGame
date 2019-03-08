@@ -70,27 +70,37 @@ PrefabInstance:
     - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
         type: 3}
       propertyPath: startTangent.x
-      value: -84.32
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
         type: 3}
       propertyPath: endTangent.x
-      value: 97.1
+      value: 10.7
       objectReference: {fileID: 0}
     - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
         type: 3}
       propertyPath: endPoint.y
-      value: -50
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
         type: 3}
       propertyPath: startPoint.y
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
         type: 3}
       propertyPath: startPoint.x
-      value: -38.23
+      value: -34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
+        type: 3}
+      propertyPath: startTangent.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
+        type: 3}
+      propertyPath: endTangent.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16659da2dcc499b4abb0a666c6db316f, type: 3}

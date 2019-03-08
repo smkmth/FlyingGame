@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2ba9c75042ed041924b31f1e4fcaed, type: 3}
   m_Name: AIShip
   m_EditorClassIdentifier: 
-  Hulls: []
-  Guns: []
-  Engines: []
+  Hulls:
+  - {fileID: 5081550384229467160, guid: 8968f63b41498674c953298e4fc4e137, type: 3}
+  Guns:
+  - {fileID: 114029034574092638, guid: 207e01cb7b0832a42af475ba33ac0fbd, type: 3}
+  - {fileID: 114029034574092638, guid: 207e01cb7b0832a42af475ba33ac0fbd, type: 3}
+  Engines:
+  - {fileID: 1667822380739147397, guid: 513197ef9bb400b458dfd3215e726f38, type: 3}

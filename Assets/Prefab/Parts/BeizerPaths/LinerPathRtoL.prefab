@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5109246948399499145}
   - component: {fileID: 2456817842427568109}
   m_Layer: 0
-  m_Name: LinerPath
+  m_Name: LinerPathRtoL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394ac04dad54e0e4fb9d468d583166bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {x: -0, y: 60, z: 0}
-  endPoint: {x: 0, y: -60, z: 0}
+  startPoint: {x: 33.5, y: 30, z: 0}
+  endPoint: {x: -39, y: -45, z: 0}
   startTangent: {x: 0, y: 0, z: 0}
   endTangent: {x: 0, y: 0, z: 0}

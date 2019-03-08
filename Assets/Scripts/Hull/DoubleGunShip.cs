@@ -30,6 +30,7 @@ public class DoubleGunShip : Hull
     public PooledObjectManager pool;
     public InputComponent input;
     public Rigidbody rb;
+    private EnemyWaveSpawner enemyspawner;
 
 
     private ScoreManager score; 
@@ -51,6 +52,7 @@ public class DoubleGunShip : Hull
         
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
         score = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        enemyspawner = GameObject.Find("GameManager").GetComponent<EnemyWaveSpawner>();
         input = gameObject.GetComponentInParent<InputComponent>();
         rb = gameObject.GetComponentInParent<Rigidbody>();
 

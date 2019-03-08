@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hulls:
   - {fileID: 6638709006818917166, guid: e0347dea6b341ce468e1c4e403a3b5fb, type: 3}
+  - {fileID: 5081550384229467160, guid: 8968f63b41498674c953298e4fc4e137, type: 3}
   Guns:
   - {fileID: 114029034574092638, guid: 207e01cb7b0832a42af475ba33ac0fbd, type: 3}
   - {fileID: 8897225733859616, guid: eb53d48b75d58ec49bae0878512a806f, type: 3}
