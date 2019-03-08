@@ -26,7 +26,8 @@ public class EnemyWaveSpawner : MonoBehaviour
     [SerializeField]
     [Range(-1f, 1f)]
     private float HowFarY;
-
+    [SerializeField]
+    private Vector3 EnemyStartPos;
 
 
 
@@ -36,7 +37,6 @@ public class EnemyWaveSpawner : MonoBehaviour
     private string EnemyName;
 
 
-    private Vector3 EnemyStartPos;
     private PooledObjectManager pool;
     private ScreenManager screen;
     private GamestateManager manager;
@@ -70,7 +70,7 @@ public class EnemyWaveSpawner : MonoBehaviour
                 EnemyList.Add(enemy);
                 BezierEnemy enemycomp = enemy.GetComponent<BezierEnemy>();
                 enemycomp.BezierTimer = 0.0f;
-                enemycomp.SetBezier(wave.bezierCurves[0]);
+                enemycomp.SetBezier(wave.bezierCurves[Random.Range(0,2)]);
                 enemycomp.SlowDownFactor = .2f;
             }
             

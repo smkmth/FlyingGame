@@ -114,7 +114,7 @@ MonoBehaviour:
   currentClip: 30
   fireRate: 0.1
   reloadTime: 0.5
-  bulletSpeed: 30
+  bulletSpeed: 50
   bulletDamage: 10
   facingForward: 0
   isPlayer: 0

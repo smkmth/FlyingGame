@@ -21,6 +21,13 @@ public enum EngineParts
     
 
 }
+public enum HullParts
+{
+    StrongShip,
+    WeakShip,
+    
+
+}
 public static class ShipBuilder 
 {
    
@@ -92,6 +99,46 @@ public static class ShipBuilder
         }
 
         return ship; 
+    }
+
+
+
+    public static GameObject CreateShip(GameObject shipbase, ShipParts parts, InputComponentType input)
+    {
+
+        GameObject ship = GameObject.Instantiate(parts.Hulls[0].gameObject, shipbase.transform);
+        Hull hull = ship.GetComponent<Hull>();
+        hull.Init();
+        for (int i = 0; i < hull.GunSlots.Count; i++)
+        {
+            GameObject gun = GameObject.Instantiate(parts.Guns[i].gameObject, shipbase.transform);
+            gun.transform.position = hull.GunSlots[i].transform.position;
+        }
+        GameObject.Instantiate(parts.Engines[0], shipbase.transform);
+        switch (input)
+        {
+            case InputComponentType.Player:
+                {
+
+                    shipbase.AddComponent<PlayerInput>();
+                    break;
+
+                }
+            case InputComponentType.LeftToRightAi:
+                {
+                    shipbase.AddComponent<LeftToRightAi>();
+                    break;
+
+                }
+            case InputComponentType.BeizerEnemy:
+                {
+                    shipbase.AddComponent<BezierEnemy>();
+                    break;
+
+                }
+        }
+
+        return shipbase;
     }
 
 

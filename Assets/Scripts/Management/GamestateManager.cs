@@ -41,6 +41,8 @@ public class GamestateManager : MonoBehaviour {
 
     [Header("Ship Parts")]
 
+    public ShipParts enemyShip; 
+
     public GameObject ShipBase;
     public GameObject AIShipBase;
     [HideInInspector]
@@ -124,7 +126,7 @@ public class GamestateManager : MonoBehaviour {
         EnemyList = pool.InitList(AIShipBase, EnemiesToPool, EnemyName);
         foreach (GameObject aenemey in EnemyList)
         {
-            ShipBuilder.CreateShip(aenemey, parts.Hulls[0].gameObject, parts.Engines[1].gameObject, EnemeyGuns, InputComponentType.BeizerEnemy);
+            ShipBuilder.CreateShip(aenemey, enemyShip, InputComponentType.BeizerEnemy);
             ShipBuilder.SetLayerRecursively(aenemey, (LayerMask.NameToLayer("Goon")));
         }
     }

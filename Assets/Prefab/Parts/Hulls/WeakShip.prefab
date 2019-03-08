@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8050459225438089315
+--- !u!1001 &1919700631617011510
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 446606476427661021, guid: e0347dea6b341ce468e1c4e403a3b5fb,
         type: 3}
       propertyPath: m_Name
-      value: EnemyShipBody Variant
+      value: WeakShip
       objectReference: {fileID: 0}
     - target: {fileID: 7961655140730512772, guid: e0347dea6b341ce468e1c4e403a3b5fb,
         type: 3}
@@ -69,8 +69,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6638709006818917166, guid: e0347dea6b341ce468e1c4e403a3b5fb,
         type: 3}
+      propertyPath: gunslots.Array.data[0]
+      value: 
+      objectReference: {fileID: 95041947358182870}
+    - target: {fileID: 6638709006818917166, guid: e0347dea6b341ce468e1c4e403a3b5fb,
+        type: 3}
+      propertyPath: gunslots.Array.data[1]
+      value: 
+      objectReference: {fileID: 6492716210383782875}
+    - target: {fileID: 6638709006818917166, guid: e0347dea6b341ce468e1c4e403a3b5fb,
+        type: 3}
       propertyPath: maxHealth
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0347dea6b341ce468e1c4e403a3b5fb, type: 3}
+--- !u!4 &95041947358182870 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2014672162783511264, guid: e0347dea6b341ce468e1c4e403a3b5fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1919700631617011510}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6492716210383782875 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4665420749367377133, guid: e0347dea6b341ce468e1c4e403a3b5fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1919700631617011510}
+  m_PrefabAsset: {fileID: 0}

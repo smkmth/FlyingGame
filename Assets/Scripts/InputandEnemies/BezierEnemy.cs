@@ -55,8 +55,9 @@ public class BezierEnemy : InputComponent
         if (moving)
         {
             BezierTimer += Time.deltaTime * SlowDownFactor;
+            GetFire = true;
         }
-        if (BezierTimer > 2)
+        if (BezierTimer > 1)
         {
             moving = false;
             pool.DespwanObject(this.gameObject);

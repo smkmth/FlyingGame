@@ -168,7 +168,7 @@ public class PooledObjectManager : MonoBehaviour {
                 if (anobject.activeSelf)
                 {
                     anobject.SetActive(false);
-                    anobject.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+                    anobject.transform.SetPositionAndRotation(new Vector3(0, 60,0), Quaternion.identity);
                     //Debug.Log(anobject.name + " despawned");
 
                 }

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bezierCurves:
   - {fileID: 2198681805752314528, guid: b572fd4ed411e3040a4cc3eb8b00092d, type: 3}
+  - {fileID: 4392984780583252615, guid: e1518025fb589df49a9fb39114a10a49, type: 3}

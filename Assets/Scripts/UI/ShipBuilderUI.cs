@@ -10,6 +10,7 @@ public class ShipBuilderUI : MonoBehaviour
     public Dropdown gundropdown;
     public Dropdown gun2dropdown;
     public Dropdown enginedropdown;
+    public Dropdown hulldropdown;
     public GamestateManager manager;
     [SerializeField]
     public ShipParts parts;
@@ -28,6 +29,9 @@ public class ShipBuilderUI : MonoBehaviour
 
         enginedropdown.ClearOptions();
         enginedropdown.AddOptions(System.Enum.GetNames(typeof(EngineParts)).ToList());
+
+        hulldropdown.ClearOptions();
+        hulldropdown.AddOptions(System.Enum.GetNames(typeof(HullParts)).ToList());
     }
 
     public void TurnOnMenu()
@@ -40,6 +44,7 @@ public class ShipBuilderUI : MonoBehaviour
         selectedGunList.Clear();
         CreateGunList(gun2dropdown);
         CreateGunList(gundropdown);
+        SelectHull();
         SelectEngine();
         manager.playerGunList = selectedGunList;
         foreach (GameObject gun in selectedGunList)
@@ -95,6 +100,35 @@ public class ShipBuilderUI : MonoBehaviour
                 }
                 break;
             case (int)EngineParts.SlowerEngine:
+                foreach (Engine engine in parts.Engines)
+                {
+                    if (engine.name == "SlowerEngine")
+                    {
+                        manager.enginePrefab = engine.gameObject;
+                    }
+
+                }
+                break;
+        }
+    }
+    public void SelectHull()
+    {
+        int selectionIndex = hulldropdown.value;
+
+        switch (selectionIndex)
+        {
+            case (int)HullParts.StrongShip:
+                //case 1:
+                foreach (Engine engine in parts.Engines)
+                {
+                    if (engine.name == "Engine")
+                    {
+                        manager.enginePrefab = engine.gameObject;
+                    }
+
+                }
+                break;
+            case (int)HullParts.WeakShip:
                 foreach (Engine engine in parts.Engines)
                 {
                     if (engine.name == "SlowerEngine")
