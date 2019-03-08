@@ -73,6 +73,7 @@ public class DoubleGunShip : Hull
         if (transform.parent.name == "Enemy")
         {
             score.AddPoint(10);
+            Health = MaxHealth;
 
         }
 

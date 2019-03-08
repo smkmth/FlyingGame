@@ -4,7 +4,8 @@ using UnityEngine;
 public enum InputComponentType
 {
     Player, 
-    LeftToRightAi
+    LeftToRightAi,
+    BeizerEnemy
 
 }
 public enum GunParts
@@ -45,6 +46,12 @@ public static class ShipBuilder
                     break;
 
                 }
+            case InputComponentType.BeizerEnemy:
+                {
+                    ship.AddComponent<BezierEnemy>();
+                    break;
+
+                }
         }
 
         return ship; 
@@ -73,6 +80,12 @@ public static class ShipBuilder
             case InputComponentType.LeftToRightAi:
                 {
                     ship.AddComponent<LeftToRightAi>();
+                    break;
+
+                }
+            case InputComponentType.BeizerEnemy:
+                {
+                    ship.AddComponent<BezierEnemy>();
                     break;
 
                 }

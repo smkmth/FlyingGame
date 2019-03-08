@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98db8b9262e3f974ead07acc302a7ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartPoint: {x: 9.171371, y: 83.53446, z: 0}
-  endPoint: {x: 72.75249, y: -55.309597, z: 0}
-  startTangent: {x: -72.68955, y: 8.208502, z: 0}
-  endTangent: {x: 12.890738, y: 60.290527, z: 0}
+  SlowDownFactor: 0.037
+  bezierCurve: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
+    type: 3}
+  StartPoint: {x: 0, y: 60, z: 0}
+  EndPoint: {x: -2, y: 2, z: 0}
+  StartTangent: {x: 0, y: 0, z: 0}
+  EndTangent: {x: 0, y: 0, z: 0}
 --- !u!1001 &85067595537076040
 PrefabInstance:
   m_ObjectHideFlags: 0

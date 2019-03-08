@@ -31,6 +31,7 @@ public class EnemyWaveSpawner : MonoBehaviour
 
 
     public List<GameObject> EnemyList;
+    public EnemyWave wave;
     private float timer;
     private string EnemyName;
 
@@ -61,17 +62,18 @@ public class EnemyWaveSpawner : MonoBehaviour
         
         for (int i = 0; i < AmountOfEnemies; i++)
         {
-            EnemyStartPos.x = Random.Range(screen.rightExtend.x *LowXRange, screen.rightExtend.x * HighXRange);
-            EnemyStartPos.y = screen.upExtend.y + 20.0f;
             GameObject enemy = pool.SpawnObject(EnemyName, EnemyStartPos, false);
+
             if (enemy)
             {
                 enemy.layer = 11;
                 EnemyList.Add(enemy);
+                BezierEnemy enemycomp = enemy.GetComponent<BezierEnemy>();
+                enemycomp.BezierTimer = 0.0f;
+                enemycomp.SetBezier(wave.bezierCurves[0]);
+                enemycomp.SlowDownFactor = .2f;
             }
-            LeftToRightAi enemycomp = enemy.GetComponent<LeftToRightAi>();
-            enemycomp.Init(HowFarX, HowFarY, HighXRange, LowXRange, HighYRange, LowYRange);
-
+            
         }
     }
 

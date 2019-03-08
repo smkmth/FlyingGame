@@ -79,7 +79,6 @@ public class LeftToRightAi : InputComponent {
 	void Update ()
     {
 
-        Debug.Log(transform.position.y / screen.downExtend.y);
         if (transform.position.y < (screen.downExtend.y * HowFarY))
         {
             goingDown = false;
