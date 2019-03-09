@@ -8,6 +8,7 @@ public enum GameState
     SetUp,
     Playing,
     GameOver,
+    Pause,
     Win
 }
 public class GamestateManager : MonoBehaviour {
@@ -109,6 +110,8 @@ public class GamestateManager : MonoBehaviour {
         CurrentGameState = GameState.Playing;
         Player.GetComponentInChildren<Hull>().SetUpPlayer();
         wavespawner.timer = 0.0f;
+        Pause(false);
+
     }
 
     public GameObject GetPlayer()
@@ -137,13 +140,60 @@ public class GamestateManager : MonoBehaviour {
         }
         else if (CurrentGameState == GameState.Win)
         {
-            GameOver();
+            Win();
+        }
+
+        if (Input.GetButtonDown("Pause"))
+        {
+            Debug.Log("Paused");
+            if (CurrentGameState == GameState.Pause)
+            {
+                Pause(false);
+            }
+            else if (CurrentGameState == GameState.Playing)
+            {
+                Pause(true);
+
+            }
         }
     }
 
     void GameOver()
     {
         uIManager.GameOver();
+        pool.DespawnAllObjects();
+
+    }
+    void Win()
+    {
+        uIManager.Win();
+        pool.DespawnAllObjects();
+    }
+
+    public void Pause(bool paused)
+    {
+        if (paused)
+        {
+            CurrentGameState = GameState.Pause;
+            Time.timeScale = 0;
+            uIManager.TogglePauseMenu(true);
+        }
+        else
+        {
+            CurrentGameState = GameState.Playing;
+            Time.timeScale = 1;
+            uIManager.TogglePauseMenu(false);
+
+        }
+
+
+    
+    }
+
+    public void QuitToMainMenu()
+    {
+        TeardownSpawn();
+        CurrentGameState = GameState.MainMenu;
 
     }
 

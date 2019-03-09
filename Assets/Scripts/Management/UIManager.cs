@@ -8,6 +8,8 @@ using UnityEngine.Assertions;
 public class UIManager : MonoBehaviour {
 
     public GameObject GameOverPanel;
+    public GameObject VictoryPanel; 
+    public GameObject PausePanel; 
     public GameObject MainMenu;
     public GameObject hud;  
     public GamestateManager manager;
@@ -19,7 +21,9 @@ public class UIManager : MonoBehaviour {
 	void Start () {
 
         GameOverPanel.SetActive(false);
+        VictoryPanel.SetActive(false);
         MainMenu.SetActive(true);
+        PausePanel.SetActive(false);
         hud.SetActive(false);
         shipbuilder = GetComponent<ShipBuilderUI>();
         if (hud == null)
@@ -38,13 +42,55 @@ public class UIManager : MonoBehaviour {
 	
 	public void GameOver()
     {
+        hud.SetActive(false);
         GameOverPanel.SetActive(true);
+    }
+
+    public void Win()
+    {
+        hud.SetActive(false);
+        VictoryPanel.SetActive(true);
     }
     //for the button 
     public void RestartGame()
     {
         GameOverPanel.SetActive(false);
+        VictoryPanel.SetActive(false);
+        PausePanel.SetActive(false);
+
         manager.Restart();
+
+    }
+    public void TogglePauseMenu(bool paused)
+    {
+        if (paused)
+        {
+            hud.SetActive(false);
+            PausePanel.SetActive(true);
+        }
+        else
+        {
+            hud.SetActive(true);
+            PausePanel.SetActive(false);
+
+        }
+    }
+
+    public void ResumeGame()
+    {
+        TogglePauseMenu(false);
+        manager.Pause(false);
+    }
+
+    public void QuitGame()
+    {
+        GameOverPanel.SetActive(false);
+        VictoryPanel.SetActive(false);
+        PausePanel.SetActive(false);
+        hud.SetActive(false);
+
+        manager.QuitToMainMenu();
+        MainMenu.SetActive(true);
 
     }
 
@@ -53,6 +99,7 @@ public class UIManager : MonoBehaviour {
         MainMenu.SetActive(false);
         shipbuilder.TurnOffMenu();
         hud.SetActive(true);
+
         manager.InitGame();
     }
     public void SetHealthBar(float maxhealth)

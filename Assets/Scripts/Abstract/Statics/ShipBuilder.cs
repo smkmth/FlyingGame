@@ -23,8 +23,10 @@ public enum EngineParts
 }
 public enum HullParts
 {
+    MonsterShip,
     StrongShip,
-    WeakShip,
+    WeakShip
+    
 }
 /// <summary>
 /// static methods for creating ships from the parts 

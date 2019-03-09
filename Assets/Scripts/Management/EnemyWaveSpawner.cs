@@ -180,9 +180,9 @@ public class EnemyWaveSpawner : MonoBehaviour
         if (DeadEnemies >= currentWave.EnemyShips.Count)
         {
             DeadEnemies = 0; 
-            if (waveCount <= currentLevel.Waves.Count)
+            waveCount++;
+            if (waveCount < currentLevel.Waves.Count)
             {
-                waveCount++;
                 currentWave = currentLevel.Waves[waveCount];
 
             }

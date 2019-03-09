@@ -117,6 +117,16 @@ public class ShipBuilderUI : MonoBehaviour
 
         switch (selectionIndex)
         {
+            case (int)HullParts.MonsterShip:
+                foreach (Hull hull in parts.Hulls)
+                {
+                    if (hull.name == "MonsterShip")
+                    {
+                        manager.hullPrefab = hull.gameObject;
+                    }
+
+                }
+                break;
             case (int)HullParts.StrongShip:
                 //case 1:
                 foreach (Hull hull in parts.Hulls)
@@ -138,6 +148,7 @@ public class ShipBuilderUI : MonoBehaviour
 
                 }
                 break;
+            
         }
     }
 }
