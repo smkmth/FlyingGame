@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour {
 
     public GameObject GameOverPanel;
     public GameObject VictoryPanel; 
+    public GameObject MapScreen; 
     public GameObject PausePanel; 
     public GameObject MainMenu;
     public GameObject hud;  
@@ -76,6 +77,13 @@ public class UIManager : MonoBehaviour {
         }
     }
 
+    public void GoToMapScreen()
+    {
+        MapScreen.SetActive(true);
+
+    }
+
+
     public void ResumeGame()
     {
         TogglePauseMenu(false);
@@ -98,6 +106,9 @@ public class UIManager : MonoBehaviour {
     {
         MainMenu.SetActive(false);
         shipbuilder.TurnOffMenu();
+        VictoryPanel.SetActive(false);
+        MapScreen.SetActive(false);
+
         hud.SetActive(true);
 
         manager.InitGame();

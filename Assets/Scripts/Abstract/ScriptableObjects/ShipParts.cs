@@ -6,7 +6,7 @@ using UnityEditor;
 /// a scriptable object for any list of parts, either for individual ships, or a
 /// master list, or for ui lists
 /// </summary>
-[CreateAssetMenu(fileName = "MasterPartList", menuName = "PartLists", order = 1)]
+[CreateAssetMenu(fileName = "MasterPartList", order = 1)]
 public class ShipParts : ScriptableObject
 {
 

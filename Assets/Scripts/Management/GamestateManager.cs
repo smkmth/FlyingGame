@@ -55,6 +55,7 @@ public class GamestateManager : MonoBehaviour {
     [HideInInspector]
     public List<GameObject> playerGunList;
 
+    public Level LevelToLoad;
 
     [Header ("Start Position")]
     public Vector3 PlayerStartPos;
@@ -62,6 +63,7 @@ public class GamestateManager : MonoBehaviour {
     public GameState CurrentGameState { get; set; }
 
     private EnemyWaveSpawner wavespawner;
+
 
     private void Awake()
     {
@@ -78,6 +80,11 @@ public class GamestateManager : MonoBehaviour {
 
     }
 
+    public void SetLevelToLoad(Level level)
+    {
+        LevelToLoad = level;
+
+    }
 
     public void InitGame()
     {
@@ -85,9 +92,8 @@ public class GamestateManager : MonoBehaviour {
         {
             Debug.Log(gun.name);
         }
-        InitScene(hullPrefab, enginePrefab, playerGunList);
+        InitScene(LevelToLoad, hullPrefab, enginePrefab, playerGunList);
         StartGame();
-
     }
 
     private void InitScene(GameObject playerhull, GameObject playerengine, List<GameObject> playerguns)
@@ -102,6 +108,22 @@ public class GamestateManager : MonoBehaviour {
         pool.Init(BulletPrefab, BulletsToPool, BulletName);
         //set up enemies
         wavespawner.InitEnemies();
+        //
+    }
+
+    private void InitScene(Level level, GameObject playerhull, GameObject playerengine, List<GameObject> playerguns)
+    {
+        pool.TearDownObjects();
+        //setup player
+        Player = pool.InitGameObject(ShipBase, PlayersToPool, PlayerName);
+        ShipBuilder.CreateShip(Player, playerhull, playerengine, playerguns, InputComponentType.Player);
+        ShipBuilder.SetLayerRecursively(Player, LayerMask.NameToLayer("Player"));
+
+        //set up bullets
+        pool.Init(BulletPrefab, BulletsToPool, BulletName);
+        //set up enemies
+        wavespawner.InitEnemies();
+        wavespawner.SetLevel(level);
     }
 
     public void StartGame()

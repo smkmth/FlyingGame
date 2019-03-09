@@ -20,5 +20,5 @@ MonoBehaviour:
   - {fileID: 2198681805752314528, guid: b572fd4ed411e3040a4cc3eb8b00092d, type: 3}
   - {fileID: 4392984780583252615, guid: e1518025fb589df49a9fb39114a10a49, type: 3}
   - {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f, type: 3}
-  EnemiesToSpawnAtOnce: 1
+  EnemiesToSpawnAtOnce: 2
   SlowdownFactor: 0.2

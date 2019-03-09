@@ -87,6 +87,11 @@ public class EnemyWaveSpawner : MonoBehaviour
 
 
     }
+    public void SetLevel(Level level)
+    {
+        currentLevel = level;
+    }
+
     //Creates a whole load of enemies, and sets their layer to 'Goon'. it is called by GamestateManager
     //on startup, double itterates through waves in level, then enemies in waves. 
     public void InitEnemies()
