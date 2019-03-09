@@ -3508,8 +3508,6 @@ GameObject:
   - component: {fileID: 605671015}
   - component: {fileID: 605671014}
   - component: {fileID: 605671013}
-  - component: {fileID: 605671017}
-  - component: {fileID: 605671018}
   m_Layer: 0
   m_Name: ScrollingCloudsback
   m_TagString: Untagged
@@ -3589,82 +3587,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &605671017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 605671012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eea573c251eb2184792b80165976b799, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ScrollSpeed: 0.2
-  Offset: 0
-  Rotate: 0
-  rend: {fileID: 0}
---- !u!114 &605671018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 605671012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00db2946820a9ff44afc0314dbc5cd2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &621448396
 GameObject:
   m_ObjectHideFlags: 0
@@ -7558,58 +7480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea573c251eb2184792b80165976b799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ScrollSpeed: 1
-  Offset: 0
-  Rotate: 0
-  rend: {fileID: 0}
 --- !u!65 &1485446742
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8609,15 +8479,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a339573082b2d10439730aba625538d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemiesToPool: 80
+  EnemiesToPool: 2
   EnemyResetPos: {x: 0, y: -60, z: 0}
   AIShipBase: {fileID: 7179825800110655310, guid: cc7df48dfeb94eb4289d8844155cd56b,
     type: 3}
   enemyShip: {fileID: 11400000, guid: e49d47d088b65664ea902c7fb3516374, type: 2}
   AmountOfEnemiesToSpawnOnWave: 1
-  wave: {fileID: 11400000, guid: 5e90a943e22d7df41b1df0bfde1a0f8d, type: 2}
+  currentLevel: {fileID: 11400000, guid: 2f25f130ffdcda64eaab47d4b5fd6fe4, type: 2}
+  currentWave: {fileID: 0}
   timer: 0
   WaveTimer: 2
+  RandomBezier: 0
+  DeadEnemies: 0
   EnemyList: []
 --- !u!4 &1791046567
 Transform:
@@ -9157,12 +9030,12 @@ GameObject:
   - component: {fileID: 2018584839}
   - component: {fileID: 2018584838}
   m_Layer: 0
-  m_Name: Cloud
+  m_Name: explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!73398921 &2018584838
 VFXRenderer:
   m_ObjectHideFlags: 2
@@ -9170,7 +9043,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018584837}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

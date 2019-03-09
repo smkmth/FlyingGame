@@ -10,6 +10,10 @@ public class EnemyWave : ScriptableObject
     public List<ShipParts> EnemyShips;
     //The bezier curves to apply to each ship 
     public List<BezierCurve> bezierCurves;
+
+    public int EnemiesToSpawnAtOnce;
+
+    public float SlowdownFactor; 
  
 }
 

@@ -48,6 +48,12 @@ public class BezierEnemy : InputComponent
 
     }
 
+    public void InitOnSpawn()
+    {
+        moving = true;
+        BezierTimer = 0;
+    }
+
 
 
     public void Update()

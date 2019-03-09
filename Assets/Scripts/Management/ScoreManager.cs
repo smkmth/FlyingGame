@@ -6,10 +6,12 @@ public class ScoreManager : MonoBehaviour
 {
     int currentPoints;
     private ScoreManagerUI uiScoreManager;
+    private EnemyWaveSpawner spawner;
 
     void Start()
     {
         uiScoreManager = GameObject.Find("UI").GetComponent<ScoreManagerUI>();
+        spawner = GameObject.Find("GameManager").GetComponent<EnemyWaveSpawner>();
 
         currentPoints = 0;
         uiScoreManager.SetScoreUI(currentPoints);
@@ -18,6 +20,7 @@ public class ScoreManager : MonoBehaviour
     public void Restart()
     {
         currentPoints = 0;
+        spawner.DeadEnemies = 0; 
         uiScoreManager.SetScoreUI(currentPoints);
 
     }
@@ -27,6 +30,8 @@ public class ScoreManager : MonoBehaviour
     {
         currentPoints += pointValue;
         uiScoreManager.SetScoreUI(currentPoints);
+        spawner.DeadEnemies += 1;
+        
 
     }
     

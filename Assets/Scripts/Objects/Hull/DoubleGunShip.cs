@@ -47,7 +47,7 @@ public class DoubleGunShip : Hull
     }
     public override void BlowUp()
     {
-        if (transform.parent.name == "Enemy")
+        if (transform.parent.name != "Player")
         {
             score.AddPoint(10);
             Health = MaxHealth;

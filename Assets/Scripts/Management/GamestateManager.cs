@@ -7,7 +7,8 @@ public enum GameState
     MainMenu,
     SetUp,
     Playing,
-    GameOver
+    GameOver,
+    Win
 }
 public class GamestateManager : MonoBehaviour {
 
@@ -134,6 +135,10 @@ public class GamestateManager : MonoBehaviour {
                 }
             }
         }
+        else if (CurrentGameState == GameState.Win)
+        {
+            GameOver();
+        }
     }
 
     void GameOver()
@@ -145,6 +150,7 @@ public class GamestateManager : MonoBehaviour {
     public void Restart()
     {
         pool.DespawnAllObjects();
+        wavespawner.InitReset();
         scoreManager.Restart();
         StartGame();
     }
