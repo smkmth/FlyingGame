@@ -20,7 +20,9 @@ public class DoubleGunShip : Hull
 
     private PooledObjectManager pool;
     private InputComponent input;
-    private ScoreManager score; 
+    private ScoreManager score;
+    public Renderer[] materials;
+    public Color shipColor; 
 
 
     private void Start()
@@ -35,6 +37,14 @@ public class DoubleGunShip : Hull
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
         score = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
         input = gameObject.GetComponentInParent<InputComponent>();
+
+        materials = GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in materials)
+        {
+
+            r.material.SetColor("_MatColor", shipColor);
+        }
+
     }
 
     public override void Init()
@@ -43,6 +53,11 @@ public class DoubleGunShip : Hull
         Health = MaxHealth;
         CanBeDamaged = true;
         GunSlots = gunslots;
+        foreach (Renderer r in materials)
+        {
+
+            r.material.SetColor("_MatColor", shipColor);
+        }
 
     }
     public override void BlowUp()
@@ -66,13 +81,30 @@ public class DoubleGunShip : Hull
         UIManager.SetHealthBar(MaxHealth);
 
     }
+    public IEnumerator HitEffect()
+    {
+        foreach (Renderer r in materials)
+        {
+            Color myColor = new Color(1f, 1f, 1f, 1f);
+            r.material.SetColor("_MatColor", myColor);
+        }
+        yield return new WaitForSeconds(0.5f);
+        foreach (Renderer r in materials)
+        {
 
+            r.material.SetColor("_MatColor", shipColor);
+        }
+        yield return null;
+
+    }
 
     public override void TakeDamage(int damageToTake)
     {
         if (CanBeDamaged)
         {
+            StartCoroutine(HitEffect());
             Health -= damageToTake;
+          
             Debug.Log(this.name + " hit, now they have " + Health + " health");
             if (UIManager)
             {
@@ -80,6 +112,12 @@ public class DoubleGunShip : Hull
             }
             if (Health <= 0)
             {
+                StopAllCoroutines();
+                foreach (Renderer r in materials)
+                {
+
+                    r.material.SetColor("_MatColor", shipColor);
+                }
                 BlowUp();
             }
         }

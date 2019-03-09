@@ -111,6 +111,9 @@ public class GamestateManager : MonoBehaviour {
         Player.GetComponentInChildren<Hull>().SetUpPlayer();
         wavespawner.timer = 0.0f;
         Pause(false);
+        wavespawner.InitReset();
+        scoreManager.Restart();
+
 
     }
 
@@ -200,7 +203,6 @@ public class GamestateManager : MonoBehaviour {
     public void Restart()
     {
         pool.DespawnAllObjects();
-        wavespawner.InitReset();
         scoreManager.Restart();
         StartGame();
     }

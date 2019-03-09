@@ -49,16 +49,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbd60539d228e0d48846a5f9bd871b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainEngine: {fileID: 0}
-  gunArray: []
-  maxHealth: 300
   gunslots:
   - {fileID: 2014672162783511264}
   - {fileID: 4665420749367377133}
-  pool: {fileID: 0}
-  input: {fileID: 0}
-  rb: {fileID: 0}
-  RollTime: 0.5
+  maxHealth: 100
+  materials: []
+  shipColor: {r: 0.7169812, g: 0.050729793, b: 0.050729793, a: 0}
 --- !u!65 &7161255043030321486
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -82,6 +82,21 @@ PrefabInstance:
       propertyPath: gunslots.Array.data[1]
       value: 
       objectReference: {fileID: 8174867661328581349}
+    - target: {fileID: 6638709006818917166, guid: e0347dea6b341ce468e1c4e403a3b5fb,
+        type: 3}
+      propertyPath: shipColor.r
+      value: 0.8098814
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638709006818917166, guid: e0347dea6b341ce468e1c4e403a3b5fb,
+        type: 3}
+      propertyPath: shipColor.g
+      value: 0.8962264
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638709006818917166, guid: e0347dea6b341ce468e1c4e403a3b5fb,
+        type: 3}
+      propertyPath: shipColor.b
+      value: 0.19023676
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0347dea6b341ce468e1c4e403a3b5fb, type: 3}
 --- !u!4 &3042634584845106408 stripped
