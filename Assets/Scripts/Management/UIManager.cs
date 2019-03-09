@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Assertions;
+
 
 public class UIManager : MonoBehaviour {
 
@@ -20,6 +22,10 @@ public class UIManager : MonoBehaviour {
         MainMenu.SetActive(true);
         hud.SetActive(false);
         shipbuilder = GetComponent<ShipBuilderUI>();
+        if (hud == null)
+        {
+            Assert.IsTrue(false, "No hud object in scene");
+        }
     }
 
     public void TurnOnShipBuilder()

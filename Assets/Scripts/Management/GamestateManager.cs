@@ -26,11 +26,14 @@ public class GamestateManager : MonoBehaviour {
     [SerializeField]
     private int PlayersToPool;
 
-    [SerializeField]
+    //This name is how we index the spawnobject method. we always 
+    //spawn objects using these variables, not just a string so accidentally 
+    //changing the name here dosnt break stuff. 
+    [HideInInspector]
     public string PlayerName;
-    [SerializeField]
+    [HideInInspector]
     public string EnemyName;
-    [SerializeField]
+    [HideInInspector]
     public string BulletName;
 
     public GameObject BulletPrefab;
@@ -66,7 +69,11 @@ public class GamestateManager : MonoBehaviour {
         wavespawner = GetComponent<EnemyWaveSpawner>();
 
         CurrentGameState = GameState.SetUp;
-        
+        //set these here so they dont get changed
+        PlayerName = "Player";
+        EnemyName = "Enemy";
+        BulletName = "Bullet";
+
     }
 
 
@@ -99,12 +106,9 @@ public class GamestateManager : MonoBehaviour {
     {
         Player = pool.SpawnObject(PlayerName, PlayerStartPos, true);
         CurrentGameState = GameState.Playing;
-        Player.GetComponentInChildren<Hull>().SetUp();
+        Player.GetComponentInChildren<Hull>().SetUpPlayer();
         wavespawner.timer = 0.0f;
     }
-
-
-  
 
     public GameObject GetPlayer()
     {

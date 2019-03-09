@@ -6,18 +6,11 @@ public class LeftToRightAi : InputComponent {
     public AIState state;
 
     public override float GetForward { get; set; }
-
     public override float GetLeft { get; set; }
 
     public override bool GetFire { get; set; }
     public override bool GetRoll { get; set; }
 
-
-
-    private ScreenManager screen;
-
-
- 
     private float HowFarX;
     private float HowFarY;
 
@@ -26,53 +19,27 @@ public class LeftToRightAi : InputComponent {
     private float RandomYHigh;
     private float RandomYLow;
 
-
-
     private bool goingRight;
     private bool goingDown;
 
+    private ScreenManager screen;
     
 
-    // Use this for initialization
+    // Use this for setting up default relationships
     void Start ()
     {
         state = AIState.MovingToInitPos;
         screen = GameObject.Find("ScreenManager").GetComponent<ScreenManager>();        
-
     }
-
+    //Use this for initialization
     public void Init(float howfarx, float howfary, float randomxhigh, float randomxlow, float randomyhigh, float randomylow )
     {
-        //Debug.Log("Init");
         HowFarX = howfarx;
         HowFarY = howfary;
         RandomXHigh = randomxhigh;
         RandomXLow = randomxlow;
         RandomYHigh = randomyhigh;
         RandomYLow = randomylow;
-        /*
-        HowFarX += Random.Range(RandomXLow, RandomXHigh);
-        if (HowFarX > 1)
-        {
-            HowFarX = 1;
-        }
-        if (HowFarX < .3f)
-        {
-            HowFarX = 0.3f;
-        }
-        HowFarY += Random.Range(RandomYLow, RandomYHigh);
-        if (HowFarY > 1)
-        {
-            HowFarY = 1;
-        }
-        if (HowFarY < .3f)
-        {
-            HowFarY = .3f;
-        }
-       */
-        
-        //Debug.Log(" how far x = " + HowFarX + "how far y = " + HowFarY);
-
     }
 	
 	// Update is called once per frame

@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class MachineGun : Gun {
 
-    //pool manager  - found with the gameobject called 'ObjectPooler'
-    [SerializeField]
-    protected PooledObjectManager pool;
-
-    //input component
-    [SerializeField]
-    protected InputComponent input;
 
     //where the bullets come from (attached to gameobject)
     [SerializeField]
@@ -50,8 +43,16 @@ public class MachineGun : Gun {
     private int bulletDamage;
     public override int BulletDamage { get; set; }
 
+    [HideInInspector]
     public bool facingForward;
+    [HideInInspector]
     public bool isPlayer;
+
+    private string bulletName;
+
+    protected GamestateManager manager;
+    protected PooledObjectManager pool;
+    protected InputComponent input;
 
 
     //the timer we check reload and firerate with
@@ -66,6 +67,7 @@ public class MachineGun : Gun {
         //get components 
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
         input = gameObject.GetComponentInParent<InputComponent>();
+        manager = GameObject.Find("GameManager").GetComponent<GamestateManager>();
         //set editor settings
         FireRate = fireRate;
         Ammo = fullAmmo;
@@ -78,7 +80,7 @@ public class MachineGun : Gun {
         CurrentGunState = GunState.Idle;
         
         //check facing direction
-        if (transform.parent.name != "Player")
+        if (transform.parent.name != manager.PlayerName)
         {
             facingForward = false;
             isPlayer = false;
@@ -88,6 +90,7 @@ public class MachineGun : Gun {
             facingForward = true;
             isPlayer = true;
         }
+        bulletName = manager.BulletName;
     }
 
     public override void FireGun(bool firing)
@@ -112,7 +115,7 @@ public class MachineGun : Gun {
     protected virtual void FireShot()
     {
         currentClip -= 1;
-        GameObject bulletObj = pool.SpawnObject("Bullet", gunPos.position, facingForward);
+        GameObject bulletObj = pool.SpawnObject(bulletName, gunPos.position, facingForward);
         if (bulletObj)
         {
             Bullet bullet = bulletObj.GetComponent<Bullet>();
@@ -123,11 +126,9 @@ public class MachineGun : Gun {
             else
             {
                 bullet.gameObject.layer = LayerMask.NameToLayer("EnemyBullet");
-
             }
             bullet.bulletMaxSpeed = BulletSpeed;
             bullet.bulletDamage = BulletDamage;
-     
         }
     }
 

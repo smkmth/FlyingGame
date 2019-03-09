@@ -13,38 +13,30 @@ public enum PlayerPos
 public class Speedy : Engine
 {
 
-
     [SerializeField]
     private float maxSpeed;
-
-    [SerializeField]
-    private float rollForce;
+    public override float MaxSpeed { get; set; }
 
     [SerializeField]
     private float acceleration;
+    public override float Acceleration { get; set; }
 
     [SerializeField]
-    private Rigidbody rb;
+    private float rollForce;
+    public override float RollForce { get; set; }
 
-    [SerializeField]
-    private InputComponent input;
-
+    [HideInInspector]
     public PlayerPos playerPos;
 
-    public override float MaxSpeed { get; set; }
-
-    public override float Acceleration { get; set; }
+    [HideInInspector]
+    public bool rolling = false;
 
     public Vector3 moveForward;
     public Vector3 moveLeft;
+
+    private Rigidbody rb;
+    private InputComponent input;
     private ScreenManager screen;
-
-    public override float RollForce { get; set; }
-
-    private Vector3 rollVector;
-    public Vector3 rollTorque;
-
-    public bool rolling = false;
 
     // Use this for initialization
     void Start()

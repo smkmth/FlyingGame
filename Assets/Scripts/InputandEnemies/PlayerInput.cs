@@ -5,14 +5,10 @@ using UnityEngine;
 
 public class PlayerInput : InputComponent {
 
-
-
     public override float GetForward { get; set; }
-
     public override float GetLeft { get; set; }
 
     public override bool GetFire { get; set; }
-
     public override bool GetRoll { get; set; }
 
     private float rollTimer;

@@ -51,14 +51,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainEngine: {fileID: 0}
   gunArray: []
-  maxHealth: 10000
+  maxHealth: 300
   gunslots:
   - {fileID: 2014672162783511264}
   - {fileID: 4665420749367377133}
   pool: {fileID: 0}
   input: {fileID: 0}
   rb: {fileID: 0}
-  RollTime: 1
+  RollTime: 0.5
 --- !u!65 &7161255043030321486
 BoxCollider:
   m_ObjectHideFlags: 0

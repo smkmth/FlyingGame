@@ -53,7 +53,6 @@ public class EnemyWaveSpawner : MonoBehaviour
     {
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
         screen = GameObject.Find("ScreenManager").GetComponent<ScreenManager>();
-
         manager = GetComponent<GamestateManager>();
         EnemyName = manager.EnemyName;
         timer = 0.0f; 
@@ -65,6 +64,7 @@ public class EnemyWaveSpawner : MonoBehaviour
     //on startup
     public void InitEnemies()
     {
+
         EnemyList = pool.InitList(AIShipBase, EnemiesToPool, EnemyName);
         foreach (GameObject aenemey in EnemyList)
         {

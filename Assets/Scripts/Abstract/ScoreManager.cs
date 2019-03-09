@@ -5,10 +5,12 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     int currentPoints;
-    public ScoreManagerUI uiScoreManager;
+    private ScoreManagerUI uiScoreManager;
 
     void Start()
     {
+        uiScoreManager = GameObject.Find("UI").GetComponent<ScoreManagerUI>();
+
         currentPoints = 0;
         uiScoreManager.SetScoreUI(currentPoints);
     }

@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6d130e99b8216478a051f98e64373e, type: 3}
   m_Name: EnemyWave
   m_EditorClassIdentifier: 
+  EnemyShips:
+  - {fileID: 11400000, guid: e49d47d088b65664ea902c7fb3516374, type: 2}
+  - {fileID: 11400000, guid: e49d47d088b65664ea902c7fb3516374, type: 2}
+  - {fileID: 11400000, guid: e49d47d088b65664ea902c7fb3516374, type: 2}
   bezierCurves:
   - {fileID: 2198681805752314528, guid: b572fd4ed411e3040a4cc3eb8b00092d, type: 3}
   - {fileID: 4392984780583252615, guid: e1518025fb589df49a9fb39114a10a49, type: 3}

@@ -5,67 +5,42 @@ using UnityEngine;
 public class DoubleGunShip : Hull
 {
     [SerializeField]
-    private Engine mainEngine;
-    public override Engine MainEngine { get; set; }
-
-    [SerializeField]
-    private List<Gun> gunArray;
-    public override List<Gun> GunList { get; set ; }
+    private List<Transform> gunslots;
+    public override List<Transform> GunSlots { get; set; }
 
     [SerializeField]
     private int maxHealth;
     public override int MaxHealth { get; set; }
 
-    public override bool CanBeDamaged { get; set; }
-
-
     public override int Health { get; set; }
 
-    public override UIManager uiManager { get; set; }
+    public override bool CanBeDamaged { get; set; }
+    
+    public override UIManager UIManager { get; set; }
 
-    [SerializeField]
-    private List<Transform> gunslots;
-    public override List<Transform> GunSlots { get; set; }
-
-    public PooledObjectManager pool;
-    public InputComponent input;
-    public Rigidbody rb;
-    private EnemyWaveSpawner enemyspawner;
-
-
+    private PooledObjectManager pool;
+    private InputComponent input;
     private ScoreManager score; 
-
-    private float rollTimer;
-    private bool rolling;
-
-    public float RollTime;
 
 
     private void Start()
     {
+        //this weird pattern so i can set up properties in inspector
         MaxHealth = maxHealth;
         Health = MaxHealth;
-        GunList = gunArray;
-        MainEngine = mainEngine;
+ 
         CanBeDamaged = true;
         GunSlots = gunslots;
         
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
         score = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
-        enemyspawner = GameObject.Find("GameManager").GetComponent<EnemyWaveSpawner>();
         input = gameObject.GetComponentInParent<InputComponent>();
-        rb = gameObject.GetComponentInParent<Rigidbody>();
-
-
-
     }
 
     public override void Init()
     {
         MaxHealth = maxHealth;
         Health = MaxHealth;
-        GunList = gunArray;
-        MainEngine = mainEngine;
         CanBeDamaged = true;
         GunSlots = gunslots;
 
@@ -83,14 +58,31 @@ public class DoubleGunShip : Hull
     }
 
     //This is just setting up the UI
-    public override void SetUp()
+    public override void SetUpPlayer()
     {
         MaxHealth = maxHealth;
         Health = MaxHealth;
-        uiManager = GameObject.Find("UI").GetComponent<UIManager>();
-        uiManager.SetHealthBar(MaxHealth);
-        
+        UIManager = GameObject.Find("UI").GetComponent<UIManager>();
+        UIManager.SetHealthBar(MaxHealth);
 
+    }
+
+
+    public override void TakeDamage(int damageToTake)
+    {
+        if (CanBeDamaged)
+        {
+            Health -= damageToTake;
+            Debug.Log(this.name + " hit, now they have " + Health + " health");
+            if (UIManager)
+            {
+                UIManager.UpdateHealthBar(Health);
+            }
+            if (Health <= 0)
+            {
+                BlowUp();
+            }
+        }
     }
 
     private void Update()
@@ -103,7 +95,7 @@ public class DoubleGunShip : Hull
         {
             CanBeDamaged = true;
         }
-   }
+    }
 
 
 

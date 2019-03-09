@@ -7,6 +7,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
+        type: 3}
+      propertyPath: startTangent.x
+      value: -32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
+        type: 3}
+      propertyPath: endTangent.x
+      value: 96.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
+        type: 3}
+      propertyPath: endPoint.y
+      value: -41.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
+        type: 3}
+      propertyPath: startPoint.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
+        type: 3}
+      propertyPath: startPoint.x
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
+        type: 3}
+      propertyPath: startTangent.y
+      value: 7.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
+        type: 3}
+      propertyPath: endTangent.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
+        type: 3}
+      propertyPath: endPoint.x
+      value: -86.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6114900214042094629, guid: 16659da2dcc499b4abb0a666c6db316f,
         type: 3}
       propertyPath: m_Name
@@ -65,41 +105,6 @@ PrefabInstance:
     - target: {fileID: 5109246948399499145, guid: 16659da2dcc499b4abb0a666c6db316f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
-        type: 3}
-      propertyPath: startTangent.x
-      value: 41
-      objectReference: {fileID: 0}
-    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
-        type: 3}
-      propertyPath: endTangent.x
-      value: 10.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
-        type: 3}
-      propertyPath: endPoint.y
-      value: -40
-      objectReference: {fileID: 0}
-    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
-        type: 3}
-      propertyPath: startPoint.y
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
-        type: 3}
-      propertyPath: startPoint.x
-      value: -34
-      objectReference: {fileID: 0}
-    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
-        type: 3}
-      propertyPath: startTangent.y
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
-        type: 3}
-      propertyPath: endTangent.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
