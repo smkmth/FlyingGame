@@ -10,6 +10,7 @@ public class EnemyWave : ScriptableObject
     public List<ShipParts> EnemyShips;
     //The bezier curves to apply to each ship 
     public List<BezierCurve> bezierCurves;
+    public List<BezierCurve> stayOnScreenBezierCurves;
 
     public int EnemiesToSpawnAtOnce;
 

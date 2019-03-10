@@ -95,7 +95,7 @@ public class WorldMapUI : MonoBehaviour
         {
             if (place.name == button.name)
             {
-                manager.SetLevelToLoad(place.connections[0].Level);
+                manager.SetLevelToLoad(place.level);
                 PlayerLocation.PlayerIsHere = false;
                 PlayerLocation = place;
                 PlayerLocation.PlayerIsHere = true;                

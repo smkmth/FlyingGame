@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87f982695af4c8042abab13feae46b96, type: 3}
-  m_Name: TestLevel 1
+  m_Name: TestLevel 2
   m_EditorClassIdentifier: 
   Waves:
-  - {fileID: 11400000, guid: 2dfd6e9a3d50e5d4eb5f2e5c37f125b1, type: 2}
-  - {fileID: 11400000, guid: 2dfd6e9a3d50e5d4eb5f2e5c37f125b1, type: 2}
-  - {fileID: 11400000, guid: 2dfd6e9a3d50e5d4eb5f2e5c37f125b1, type: 2}
+  - {fileID: 11400000, guid: 6f83e1aced8691243bb2b80b839485d8, type: 2}
+  - {fileID: 11400000, guid: 6f83e1aced8691243bb2b80b839485d8, type: 2}
+  - {fileID: 11400000, guid: 6f83e1aced8691243bb2b80b839485d8, type: 2}
   WaveTimer: 0.5
   RandomBezier: 0

@@ -112,6 +112,8 @@ public class EnemyWaveSpawner : MonoBehaviour
                     BezierEnemy enemycomp = aenemy.GetComponent<BezierEnemy>();
                     enemycomp.BezierTimer = 0.0f;
                     enemycomp.SetBezier(wave.bezierCurves[i]);
+                    enemycomp.SetStayOnScreenBezier(wave.stayOnScreenBezierCurves[i]);
+                    enemycomp.SetArriveOnScreenBezier(wave.bezierCurves[i]);
                     enemycomp.SlowDownFactor = wave.SlowdownFactor;
 
                 }
@@ -137,6 +139,8 @@ public class EnemyWaveSpawner : MonoBehaviour
                 BezierEnemy enemycomp = aenemy.GetComponent<BezierEnemy>();
                 enemycomp.BezierTimer = 0.0f;
                 enemycomp.SetBezier(currentWave.bezierCurves[i]);
+                enemycomp.SetArriveOnScreenBezier(currentWave.bezierCurves[i]);
+                enemycomp.SetStayOnScreenBezier(currentWave.stayOnScreenBezierCurves[i]);
                 enemycomp.SlowDownFactor = .2f;
 
             }
@@ -153,17 +157,20 @@ public class EnemyWaveSpawner : MonoBehaviour
         for (int i = 0; i < AmountOfEnemiesToSpawnOnWave; i++)
         {
             GameObject enemy = pool.SpawnObject(currentWave.name, EnemyResetPos, false);
-            BezierEnemy enemycomp = enemy.GetComponent<BezierEnemy>();
-            if (RandomBezier)
-            {
-                if (enemy)
+            if (enemy) { 
+                BezierEnemy enemycomp = enemy.GetComponent<BezierEnemy>();
+                if (RandomBezier)
                 {
+
                     enemycomp.SetBezier(currentWave.bezierCurves[Random.Range(0, currentWave.bezierCurves.Count)]);
+                    enemycomp.SetArriveOnScreenBezier(currentWave.bezierCurves[Random.Range(0, currentWave.bezierCurves.Count)]);
+                    enemycomp.SetStayOnScreenBezier(currentWave.bezierCurves[Random.Range(0, currentWave.bezierCurves.Count)]);
                     enemycomp.SlowDownFactor = .2f;
 
+
                 }
+                enemycomp.InitOnSpawn();
             }
-            enemycomp.InitOnSpawn(); 
         }
     }
     //while we are in gamestate playing, this method counts up the time, untill it reaches wave timer,

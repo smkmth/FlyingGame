@@ -8,6 +8,9 @@ public class BezierEnemy : InputComponent
     public override float GetLeft { get; set; }
     public override bool GetFire { get; set; }
     public override bool GetRoll { get; set; }
+    public override bool GetFineMov { get; set; }
+
+
 
     [Range(0.01f, 1f)]
     public float SlowDownFactor;
@@ -25,14 +28,22 @@ public class BezierEnemy : InputComponent
     [HideInInspector]
     public Vector3 EndTangent = Vector3.zero;
 
+
     [HideInInspector]
     public float BezierTimer = 0.0f;
     Vector3 curvepos;
+
+    public BezierCurve arriveOnScreenCurve;
+    public BezierCurve stayOnScreen;
+
     private PooledObjectManager pool;
+    private ScreenManager screen;
+
 
     public void Awake()
     {
         pool = GameObject.Find("ObjectPooler").GetComponent<PooledObjectManager>();
+        screen = GameObject.Find("ScreenManager").GetComponent<ScreenManager>();
 
     }
 
@@ -47,10 +58,20 @@ public class BezierEnemy : InputComponent
         
 
     }
+    public void SetStayOnScreenBezier(BezierCurve curve)
+    {
+        stayOnScreen = curve; 
+    }
+
+    public void SetArriveOnScreenBezier(BezierCurve curve)
+    {
+        arriveOnScreenCurve = curve;
+    }
 
     public void InitOnSpawn()
     {
         moving = true;
+        SetBezier(arriveOnScreenCurve);
         BezierTimer = 0;
     }
 
@@ -65,11 +86,14 @@ public class BezierEnemy : InputComponent
         }
         if (BezierTimer > 1)
         {
-            moving = false;
-            pool.DespwanObject(this.gameObject);
+            SetBezier(stayOnScreen);
+            StartPoint = transform.position;
+            EndPoint = transform.position;
             BezierTimer = 0;
+            moving = true;
             
         }
+      
 
         // curvepos = ((1 - BezierTimer )* (1 - BezierTimer) * StartPoint) + (1 * BezierTimer * (1 - BezierTimer) * StartTangent) + (1 * BezierTimer * (1 - BezierTimer) * EndTangent) +(BezierTimer * BezierTimer) * EndPoint;
 
@@ -87,6 +111,7 @@ public class BezierEnemy : InputComponent
         curvepos = p;
   
         curvepos.z = 0.0f;
+
 
 
         transform.position = curvepos;

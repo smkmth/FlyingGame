@@ -17,3 +17,4 @@ MonoBehaviour:
   maplocation: {x: 340, y: 400}
   PlayerIsHere: 0
   FormattedName: Butts Town
+  level: {fileID: 11400000, guid: 2f25f130ffdcda64eaab47d4b5fd6fe4, type: 2}

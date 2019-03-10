@@ -11,13 +11,15 @@ public enum InputComponentType
 public enum GunParts
 {
     Machinegun,
-    Shotgun
+    Shotgun,
+    FastMachinegun
 
 }
 public enum EngineParts
 {
     Engine,
     SlowerEngine,
+    TransformEngine
     
 
 }
@@ -40,8 +42,8 @@ public static class ShipBuilder
     //Creates and returns ship given a shipbase prefab, a ship hull prefab, an engine prefab, a gun prefab, and an enum for the input type.  
     public static GameObject CreateShip(GameObject ship, GameObject body, GameObject engine, GameObject gun, InputComponentType input)
     {
-        GameObject.Instantiate(body, ship.transform);
         GameObject.Instantiate(gun, ship.transform);
+        GameObject.Instantiate(body, ship.transform);
         GameObject.Instantiate(engine, ship.transform);
         switch (input)
         {

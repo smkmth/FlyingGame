@@ -19,6 +19,8 @@ MonoBehaviour:
   Guns:
   - {fileID: 114029034574092638, guid: 207e01cb7b0832a42af475ba33ac0fbd, type: 3}
   - {fileID: 8897225733859616, guid: eb53d48b75d58ec49bae0878512a806f, type: 3}
+  - {fileID: 114029034574092638, guid: 2987d8263d9dd4048b827d7b57629cce, type: 3}
   Engines:
   - {fileID: 114059386867670952, guid: 93a5cc6ed287d2046a41f27b450c360a, type: 3}
   - {fileID: 1667822380739147397, guid: 513197ef9bb400b458dfd3215e726f38, type: 3}
+  - {fileID: 2103372094072440570, guid: 676e02c8b685713478e9d16f0b0380c0, type: 3}

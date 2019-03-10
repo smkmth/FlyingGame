@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: placeNewButtsCity
   m_EditorClassIdentifier: 
   connections:
-  - {fileID: 11400000, guid: 26da06d48b1d35240aa23061cc3304db, type: 2}
+  - {fileID: 11400000, guid: 364886cf423121f4bacffb4a0b036666, type: 2}
   maplocation: {x: 550, y: 300}
-  PlayerIsHere: 1
+  PlayerIsHere: 0
   FormattedName: New Butts City
+  level: {fileID: 11400000, guid: 2f25f130ffdcda64eaab47d4b5fd6fe4, type: 2}

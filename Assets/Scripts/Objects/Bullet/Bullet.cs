@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
         screen = GameObject.Find("ScreenManager").GetComponent<ScreenManager>();
 
 
-        topScreenPos = screen.upExtend.y;
+        topScreenPos = (screen.upExtend.y - 5);
         bottomScreenPos = screen.downExtend.y;
         rightScreenPos = screen.rightExtend.x;
         leftScreenPos = screen.leftExtend.x;

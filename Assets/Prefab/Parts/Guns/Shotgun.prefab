@@ -135,16 +135,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33ea83327bba1246981101f13d28776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pool: {fileID: 0}
-  input: {fileID: 0}
   gunPos: {fileID: 8897224854665711}
   fullAmmo: 0
   currentAmmo: 0
-  fullClip: 40
-  currentClip: 40
-  fireRate: 0.1
+  fullClip: 3
+  currentClip: 3
+  fireRate: 1
   reloadTime: 1
-  bulletSpeed: 100
+  bulletSpeed: 20
   bulletDamage: 10
   facingForward: 0
   isPlayer: 0

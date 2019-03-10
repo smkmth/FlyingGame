@@ -15,5 +15,6 @@ MonoBehaviour:
   connections:
   - {fileID: 11400000, guid: 323385609a262c44998f70c338965ac5, type: 2}
   maplocation: {x: 750, y: 500}
-  PlayerIsHere: 0
+  PlayerIsHere: 1
   FormattedName: Denver
+  level: {fileID: 11400000, guid: 2f25f130ffdcda64eaab47d4b5fd6fe4, type: 2}

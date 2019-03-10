@@ -10,7 +10,7 @@ public class PlayerInput : InputComponent {
 
     public override bool GetFire { get; set; }
     public override bool GetRoll { get; set; }
-
+    public override bool GetFineMov { get; set; }
     private float rollTimer;
     private float RollTime;
 
@@ -21,6 +21,7 @@ public class PlayerInput : InputComponent {
         GetFire = false;
         RollTime = 1.0f;
         rollTimer = 0.0f;
+        GetFineMov = false;
     }
 
 
@@ -31,6 +32,14 @@ public class PlayerInput : InputComponent {
         GetForward = Input.GetAxis("Vertical");
         GetLeft = Input.GetAxis("Horizontal");
 
+        if (Input.GetButton("FineMove"))
+        {
+            GetFineMov = true;
+        }
+        else
+        {
+            GetFineMov = true;
+        }
         //firing
         if (Input.GetButton("Fire1"))
         {

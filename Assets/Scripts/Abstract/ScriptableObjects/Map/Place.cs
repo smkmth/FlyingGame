@@ -12,5 +12,7 @@ public class Place : ScriptableObject
     public bool PlayerIsHere;
 
     public string FormattedName;
+
+    public Level level;
    
 }

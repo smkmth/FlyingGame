@@ -80,6 +80,16 @@ public class ShipBuilderUI : MonoBehaviour
 
                 }
                 break;
+            case (int)GunParts.FastMachinegun:
+                foreach (Gun gun in parts.Guns)
+                {
+                    if (gun.name == "FastMachinegun")
+                    {
+                        selectedGunList.Add(gun.gameObject);
+                    }
+
+                }
+                break;
         }
     }
     public void SelectEngine()
@@ -103,6 +113,16 @@ public class ShipBuilderUI : MonoBehaviour
                 foreach (Engine engine in parts.Engines)
                 {
                     if (engine.name == "SlowerEngine")
+                    {
+                        manager.enginePrefab = engine.gameObject;
+                    }
+
+                }
+                break;
+            case (int)EngineParts.TransformEngine:
+                foreach (Engine engine in parts.Engines)
+                {
+                    if (engine.name == "TransformEngine")
                     {
                         manager.enginePrefab = engine.gameObject;
                     }

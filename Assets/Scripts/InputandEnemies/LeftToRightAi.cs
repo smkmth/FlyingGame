@@ -10,6 +10,7 @@ public class LeftToRightAi : InputComponent {
 
     public override bool GetFire { get; set; }
     public override bool GetRoll { get; set; }
+    public override bool GetFineMov { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     private float HowFarX;
     private float HowFarY;

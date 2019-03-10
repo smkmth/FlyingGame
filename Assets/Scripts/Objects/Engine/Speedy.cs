@@ -35,8 +35,8 @@ public class Speedy : Engine
     public Vector3 moveLeft;
 
     private Rigidbody rb;
-    private InputComponent input;
-    private ScreenManager screen;
+    protected InputComponent input;
+    protected ScreenManager screen;
 
     // Use this for initialization
     void Start()

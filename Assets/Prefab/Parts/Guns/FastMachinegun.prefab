@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 65014150417618044}
   - component: {fileID: 114029034574092638}
   m_Layer: 0
-  m_Name: MachineGun
+  m_Name: FastMachinegun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,12 +108,12 @@ MonoBehaviour:
   gunPos: {fileID: 4896343672080572}
   fullAmmo: 0
   currentAmmo: 0
-  fullClip: 10
-  currentClip: 10
-  fireRate: 0.6
+  fullClip: 30
+  currentClip: 30
+  fireRate: 0.3
   reloadTime: 0.5
-  bulletSpeed: 30
-  bulletDamage: 10
+  bulletSpeed: 40
+  bulletDamage: 20
   facingForward: 0
   isPlayer: 0
 --- !u!1 &1823613846026008
