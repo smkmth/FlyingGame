@@ -40,11 +40,18 @@ public static class ShipBuilder
    
     
     //Creates and returns ship given a shipbase prefab, a ship hull prefab, an engine prefab, a gun prefab, and an enum for the input type.  
-    public static GameObject CreateShip(GameObject ship, GameObject body, GameObject engine, GameObject gun, InputComponentType input)
+    public static GameObject CreateShip(GameObject ship, GameObject body, GameObject engine, List<GameObject> guns, SpcPower power, InputComponentType input)
     {
-        GameObject.Instantiate(gun, ship.transform);
         GameObject.Instantiate(body, ship.transform);
+        Hull hull = body.GetComponent<Hull>();
+        hull.Init();
+        for (int i = 0; i < hull.GunSlots.Count; i++)
+        {
+            GameObject gun = GameObject.Instantiate(guns[i], ship.transform);
+            gun.transform.position = hull.GunSlots[i].transform.position;
+        }
         GameObject.Instantiate(engine, ship.transform);
+        GameObject.Instantiate(power, ship.transform);
         switch (input)
         {
             case InputComponentType.Player:
@@ -64,9 +71,11 @@ public static class ShipBuilder
                 {
                     ship.AddComponent<BezierEnemy>();
                     break;
+
                 }
         }
-        return ship; 
+
+        return ship;
     }
 
     //Creates and returns a ship given a shipbase prefab, a ship hull prefab, an engine prefab, a list of gun prefabs, and an enum for the input type.  
@@ -116,12 +125,14 @@ public static class ShipBuilder
         GameObject ship = GameObject.Instantiate(parts.Hulls[0].gameObject, shipbase.transform);
         Hull hull = ship.GetComponent<Hull>();
         hull.Init();
+        
         for (int i = 0; i < hull.GunSlots.Count; i++)
         {
             GameObject gun = GameObject.Instantiate(parts.Guns[i].gameObject, shipbase.transform);
             gun.transform.position = hull.GunSlots[i].transform.position;
         }
         GameObject.Instantiate(parts.Engines[0], shipbase.transform);
+        GameObject.Instantiate(parts.Powers[0], shipbase.transform);
         switch (input)
         {
             case InputComponentType.Player:

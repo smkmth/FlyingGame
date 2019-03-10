@@ -8537,6 +8537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2947eda6f032e84428ca450bfada9d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NoSpawning: 0
   PermissivePool: 1
   ObjectCap: 5000
 --- !u!4 &1313954215
@@ -11371,6 +11372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uIManager: {fileID: 1952594519}
   scoreManager: {fileID: 1019521547}
+  power: {fileID: 7796322237112439339, guid: b00eaefd41f09fc4eacf0e081e1c4aed, type: 3}
   BulletsToPool: 1000
   PlayersToPool: 1
   PlayerName: Player

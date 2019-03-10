@@ -8,6 +8,8 @@ public class PooledObjectManager : MonoBehaviour {
 
     private List<GameObject> ObjectPool;
 
+    public bool NoSpawning;
+
     [SerializeField]
     private bool PermissivePool;
 
@@ -24,7 +26,7 @@ public class PooledObjectManager : MonoBehaviour {
 
         ObjectPool = new List<GameObject>();
         currentpoolcount = 0;
-
+        NoSpawning = false;
       
 	}
 
@@ -104,27 +106,30 @@ public class PooledObjectManager : MonoBehaviour {
 
     public GameObject SpawnObject(string nameToLookFor, Vector3 transformPos, bool facingForward)
     {
-        //iterate over array
-        foreach (GameObject anobject in ObjectPool)
+        if (!NoSpawning)
         {
-            //check if two game objects are the same
-            if (anobject.name == nameToLookFor)
+            //iterate over array
+            foreach (GameObject anobject in ObjectPool)
             {
-                //check if the object has any deactivated versions
-                if (!anobject.activeSelf)
+                //check if two game objects are the same
+                if (anobject.name == nameToLookFor)
                 {
-                    anobject.SetActive(true);
-                    if (facingForward)
+                    //check if the object has any deactivated versions
+                    if (!anobject.activeSelf)
                     {
-                        anobject.transform.SetPositionAndRotation(transformPos, Quaternion.identity);
-                    }
-                    else
-                    {
-                        anobject.transform.SetPositionAndRotation(transformPos, Quaternion.AngleAxis(180, Vector3.forward));
+                        anobject.SetActive(true);
+                        if (facingForward)
+                        {
+                            anobject.transform.SetPositionAndRotation(transformPos, Quaternion.identity);
+                        }
+                        else
+                        {
+                            anobject.transform.SetPositionAndRotation(transformPos, Quaternion.AngleAxis(180, Vector3.forward));
 
+                        }
+                        //Debug.Log(anobject.name + " spawned " + transformPos);
+                        return anobject;
                     }
-                    //Debug.Log(anobject.name + " spawned " + transformPos);
-                    return anobject;
                 }
             }
         }
@@ -133,23 +138,26 @@ public class PooledObjectManager : MonoBehaviour {
 
     public GameObject SpawnObject(string nameToLookFor, Vector3 transformPos, Quaternion facingDirection)
     {
-        //iterate over array
-        foreach (GameObject anobject in ObjectPool)
+        if (!NoSpawning)
         {
-            //check if two game objects are the same
-            if (anobject.name == nameToLookFor)
+            //iterate over array
+            foreach (GameObject anobject in ObjectPool)
             {
-                //check if the object has any deactivated versions
-                if (!anobject.activeSelf)
+                //check if two game objects are the same
+                if (anobject.name == nameToLookFor)
                 {
-                    anobject.SetActive(true);
-        
-                    anobject.transform.SetPositionAndRotation(transformPos, facingDirection);
-                    
-                    //Debug.Log(anobject.name + " spawned " + transformPos + facingDirection);
+                    //check if the object has any deactivated versions
+                    if (!anobject.activeSelf)
+                    {
+                        anobject.SetActive(true);
+
+                        anobject.transform.SetPositionAndRotation(transformPos, facingDirection);
+
+                        //Debug.Log(anobject.name + " spawned " + transformPos + facingDirection);
 
 
-                    return anobject;
+                        return anobject;
+                    }
                 }
             }
         }
@@ -175,6 +183,19 @@ public class PooledObjectManager : MonoBehaviour {
             }
         }
     }
+
+    public void DespawnTheseObjects(string objectsToDespawn)
+    {
+        foreach (GameObject anobject in ObjectPool)
+        {
+            if (anobject.name == objectsToDespawn)
+            {
+                anobject.SetActive(false);
+                anobject.transform.SetPositionAndRotation(new Vector3(0, 60, 0), Quaternion.identity);
+            }
+        }
+
+    }
     //destroys all the objects in the scene
     public void TearDownObjects()
     {
@@ -192,6 +213,16 @@ public class PooledObjectManager : MonoBehaviour {
         {
             DespwanObject(anobject);
         }
+
+    }
+
+    public IEnumerator StopSpawningForTime(float timeToStop)
+    {
+
+        NoSpawning = true;
+        yield return new WaitForSeconds(timeToStop);
+        NoSpawning = false;
+
 
     }
 }

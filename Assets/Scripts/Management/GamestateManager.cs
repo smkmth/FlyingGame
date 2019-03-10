@@ -20,6 +20,8 @@ public class GamestateManager : MonoBehaviour {
     private ScreenManager screen;
     private PooledObjectManager pool;
 
+    public SpcPower power;
+
 
     [Header("Object Pooler Settings")]
     //how many objects we want to allocate upfront
@@ -101,7 +103,7 @@ public class GamestateManager : MonoBehaviour {
         pool.TearDownObjects();
         //setup player
         Player = pool.InitGameObject(ShipBase, PlayersToPool, PlayerName);
-        ShipBuilder.CreateShip(Player, playerhull, playerengine, playerguns, InputComponentType.Player);
+        ShipBuilder.CreateShip(Player, playerhull, playerengine, playerguns , InputComponentType.Player);
         ShipBuilder.SetLayerRecursively(Player, LayerMask.NameToLayer("Player"));
 
         //set up bullets
@@ -116,7 +118,7 @@ public class GamestateManager : MonoBehaviour {
         pool.TearDownObjects();
         //setup player
         Player = pool.InitGameObject(ShipBase, PlayersToPool, PlayerName);
-        ShipBuilder.CreateShip(Player, playerhull, playerengine, playerguns, InputComponentType.Player);
+        ShipBuilder.CreateShip(Player, playerhull, playerengine, playerguns, power, InputComponentType.Player);
         ShipBuilder.SetLayerRecursively(Player, LayerMask.NameToLayer("Player"));
 
         //set up bullets

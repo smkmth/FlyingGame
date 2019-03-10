@@ -19,3 +19,5 @@ MonoBehaviour:
   - {fileID: 8897225733859616, guid: eb53d48b75d58ec49bae0878512a806f, type: 3}
   Engines:
   - {fileID: 1667822380739147397, guid: 513197ef9bb400b458dfd3215e726f38, type: 3}
+  Powers:
+  - {fileID: 7796322237112439339, guid: b00eaefd41f09fc4eacf0e081e1c4aed, type: 3}

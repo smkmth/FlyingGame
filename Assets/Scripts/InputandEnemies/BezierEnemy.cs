@@ -9,8 +9,7 @@ public class BezierEnemy : InputComponent
     public override bool GetFire { get; set; }
     public override bool GetRoll { get; set; }
     public override bool GetFineMov { get; set; }
-
-
+    public override bool UseSpcPower { get; set; }
 
     [Range(0.01f, 1f)]
     public float SlowDownFactor;

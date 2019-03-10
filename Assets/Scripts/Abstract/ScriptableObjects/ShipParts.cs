@@ -13,5 +13,6 @@ public class ShipParts : ScriptableObject
     public List<Hull>   Hulls;
     public List<Gun>    Guns;
     public List<Engine> Engines;
+    public List<SpcPower> Powers;
 
 }

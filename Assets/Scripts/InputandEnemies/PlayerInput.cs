@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 
 public class PlayerInput : InputComponent {
@@ -11,6 +10,7 @@ public class PlayerInput : InputComponent {
     public override bool GetFire { get; set; }
     public override bool GetRoll { get; set; }
     public override bool GetFineMov { get; set; }
+    public override bool UseSpcPower { get; set; }
     private float rollTimer;
     private float RollTime;
 
@@ -31,6 +31,12 @@ public class PlayerInput : InputComponent {
         //movement
         GetForward = Input.GetAxis("Vertical");
         GetLeft = Input.GetAxis("Horizontal");
+        UseSpcPower = Input.GetButtonDown("SpcPower");
+
+        if (UseSpcPower)
+        {
+            Debug.Log("used");
+        }
 
         if (Input.GetButton("FineMove"))
         {
