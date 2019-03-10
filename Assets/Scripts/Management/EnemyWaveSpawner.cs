@@ -36,12 +36,16 @@ public class EnemyWaveSpawner : MonoBehaviour
     [HideInInspector]
     public float timer;
     public float WaveTimer;
+    public bool playing;
 
     //Checking this makes the enemies ignore the bezier list order, and just picks random beziers from the
     //list
     public bool RandomBezier;
 
-    public int DeadEnemies; 
+    public int DeadEnemies;
+    public int EnemiesOnScreen;
+    public int EnemiesSpawned;
+    public int DeadEnemiesTotal;
 
     //list of enemies for initing
     [HideInInspector]
@@ -60,6 +64,7 @@ public class EnemyWaveSpawner : MonoBehaviour
     private GamestateManager manager;
     private ScoreManager score;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,7 +77,11 @@ public class EnemyWaveSpawner : MonoBehaviour
         timer = 0.0f;
         DeadEnemies = 0;
         waveCount = 0;
+        DeadEnemiesTotal = 0;
+        EnemiesOnScreen = 0;
+        EnemiesSpawned = 0;
 
+        playing = true;
 
 
     }
@@ -84,6 +93,11 @@ public class EnemyWaveSpawner : MonoBehaviour
         timer = 0.0f;
         DeadEnemies = 0;
         waveCount = 0;
+        playing = true;
+        EnemiesOnScreen = 0;
+        EnemiesSpawned = 0;
+
+        DeadEnemiesTotal = 0;
 
 
     }
@@ -157,7 +171,8 @@ public class EnemyWaveSpawner : MonoBehaviour
         for (int i = 0; i < AmountOfEnemiesToSpawnOnWave; i++)
         {
             GameObject enemy = pool.SpawnObject(currentWave.name, EnemyResetPos, false);
-            if (enemy) { 
+            if (enemy) {
+                EnemiesSpawned += 1;
                 BezierEnemy enemycomp = enemy.GetComponent<BezierEnemy>();
                 if (RandomBezier)
                 {
@@ -177,34 +192,45 @@ public class EnemyWaveSpawner : MonoBehaviour
     //then calls the enemyspawn method and resets the timer. 
     public void Update()
     {
-        timer += Time.deltaTime;
-        if (manager.CurrentGameState == GameState.Playing)
+        EnemiesOnScreen = EnemiesSpawned - DeadEnemiesTotal;
+        if (playing)
         {
-          
-            if (timer > WaveTimer)
+            timer += Time.deltaTime;
+            if (manager.CurrentGameState == GameState.Playing)
             {
-                EnemySpawn();
-                timer = 0;
-
+                if (timer > WaveTimer)
+                {
+                    EnemySpawn();
+                    timer = 0;
+                }
             }
+
+            if (DeadEnemies >= currentWave.EnemyShips.Count)
+            {
+
+                DeadEnemies = 0;
+                waveCount++;
+                if (waveCount < currentLevel.Waves.Count)
+                {
+                    currentWave = currentLevel.Waves[waveCount];
+
+                }
+                else
+                {
+                    playing = false;
+
+                }
+            }
+
         }
-
-        if (DeadEnemies >= currentWave.EnemyShips.Count)
+        else
         {
-            DeadEnemies = 0; 
-            waveCount++;
-            if (waveCount < currentLevel.Waves.Count)
-            {
-                currentWave = currentLevel.Waves[waveCount];
-
-            }
-            else
+            if (EnemiesOnScreen == 0)
             {
                 manager.CurrentGameState = GameState.Win;
                 Debug.Log("VICTORY!");
             }
         }
-
 
 
        

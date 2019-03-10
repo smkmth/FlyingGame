@@ -31,6 +31,7 @@ public class ScoreManager : MonoBehaviour
         currentPoints += pointValue;
         uiScoreManager.SetScoreUI(currentPoints);
         spawner.DeadEnemies += 1;
+        spawner.DeadEnemiesTotal += 1;
         
 
     }

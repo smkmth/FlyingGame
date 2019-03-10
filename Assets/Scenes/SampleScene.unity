@@ -7653,31 +7653,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LinerPathRtoL
       objectReference: {fileID: 0}
-    - target: {fileID: 6114900214042094629, guid: 16659da2dcc499b4abb0a666c6db316f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
-        type: 3}
-      propertyPath: endPoint.y
-      value: 18.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
-        type: 3}
-      propertyPath: endPoint.x
-      value: -15.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
-        type: 3}
-      propertyPath: startTangent.y
-      value: -28.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2456817842427568109, guid: 16659da2dcc499b4abb0a666c6db316f,
-        type: 3}
-      propertyPath: endTangent.x
-      value: -15.34
-      objectReference: {fileID: 0}
     - target: {fileID: 5109246948399499145, guid: 16659da2dcc499b4abb0a666c6db316f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11361,8 +11336,12 @@ MonoBehaviour:
   currentWave: {fileID: 0}
   timer: 0
   WaveTimer: 2
+  playing: 0
   RandomBezier: 0
   DeadEnemies: 0
+  EnemiesOnScreen: 0
+  EnemiesSpawned: 0
+  DeadEnemiesTotal: 0
   EnemyList: []
 --- !u!4 &1791046567
 Transform:

@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5109246948399499145
 Transform:
   m_ObjectHideFlags: 0
@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPoint: {x: 33.5, y: 30, z: 0}
-  endPoint: {x: -39, y: -45, z: 0}
-  startTangent: {x: 0, y: 0, z: 0}
-  endTangent: {x: 0, y: 0, z: 0}
+  endPoint: {x: -15.5, y: 18.9, z: 0}
+  startTangent: {x: 0, y: -28.3, z: 0}
+  endTangent: {x: -15.34, y: 0, z: 0}
